@@ -10,7 +10,7 @@ function Coursedetails() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/coursedetails/${id}`)
+    axios.get(`https://vk-learnhub-1.onrender.com/coursedetails/${id}`)
       .then(r => { setCourse(r.data); setLoading(false); })
       .catch(err => { console.error(err); setLoading(false); });
   }, [id]);
@@ -19,7 +19,7 @@ function Coursedetails() {
     const loguser = JSON.parse(sessionStorage.getItem("users"));
     if (!loguser) { alert("Please login first"); navigate("/login"); return; }
     try {
-      const res = await axios.post("http://localhost:5000/enrollments", {
+      const res = await axios.post("https://vk-learnhub-1.onrender.com/enrollments", {
         student_id: loguser.id,
         course_id: id
       });

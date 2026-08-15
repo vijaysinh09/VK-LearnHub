@@ -286,7 +286,7 @@ Keep building projects and never stop learning. Consistent practice is the only 
     }
     setLoading(true);
     try {
-      await axios.post("http://localhost:5000/enrollments/complete", {
+      await axios.post("https://vk-learnhub-1.onrender.com/enrollments/complete", {
         student_id: loguser.id,
         course_id: id,
         student_name: loguser.name,

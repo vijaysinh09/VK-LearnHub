@@ -15,7 +15,7 @@ function Courselist() {
 
   const loadCourses = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/courses");
+      const res = await axios.get("https://vk-learnhub-1.onrender.com/courses");
       setCourses(res.data);
     } catch (err) {
       console.error(err);
@@ -27,7 +27,7 @@ function Courselist() {
   const handleEnroll = async (courseId) => {
     if (!loguser) { alert("Please login first"); navigate("/login"); return; }
     try {
-      const res = await axios.post("http://localhost:5000/enrollments", {
+      const res = await axios.post("https://vk-learnhub-1.onrender.com/enrollments", {
         student_id: loguser.id,
         course_id: courseId
       });

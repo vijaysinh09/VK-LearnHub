@@ -24,10 +24,10 @@ function InstructorDashboard() {
   // Course form
   const [courseForm, setCourseForm] = useState({ title:"", description:"", duration:"", price:"", instructor_id:"" });
 
-  const fetchStats       = () => axios.get("http://localhost:5000/instructor/stats").then(r => setStats(r.data)).catch(console.error);
-  const fetchStudents    = () => axios.get("http://localhost:5000/users").then(r => setStudents(r.data)).catch(console.error);
-  const fetchCourses     = () => axios.get("http://localhost:5000/courses").then(r => setCourses(r.data)).catch(console.error);
-  const fetchEnrollments = () => axios.get("http://localhost:5000/instructor/enrollments").then(r => setEnrollments(r.data)).catch(console.error);
+  const fetchStats       = () => axios.get("https://vk-learnhub-1.onrender.com/instructor/stats").then(r => setStats(r.data)).catch(console.error);
+  const fetchStudents    = () => axios.get("https://vk-learnhub-1.onrender.com/users").then(r => setStudents(r.data)).catch(console.error);
+  const fetchCourses     = () => axios.get("https://vk-learnhub-1.onrender.com/courses").then(r => setCourses(r.data)).catch(console.error);
+  const fetchEnrollments = () => axios.get("https://vk-learnhub-1.onrender.com/instructor/enrollments").then(r => setEnrollments(r.data)).catch(console.error);
 
   // useEffect(() => {
   //   if (!loguser || loguser.role !== "instructor") { navigate("/instructor-login"); return; }
@@ -45,7 +45,7 @@ function InstructorDashboard() {
   const deleteUser = async (id) => {
     if (!window.confirm("Delete this user? This cannot be undone.")) return;
     try {
-      await axios.delete(`http://localhost:5000/users/${id}`);
+      await axios.delete(`https://vk-learnhub-1.onrender.com/users/${id}`);
       fetchStudents(); fetchStats();
     } catch (err) { alert(err.response?.data?.message || "Delete failed"); }
   };
@@ -53,7 +53,7 @@ function InstructorDashboard() {
   const updateUser = async () => {
     try {
       const { id, name, email, role } = modal.data;
-      await axios.put(`http://localhost:5000/instructor/users/${id}`, { name, email, role });
+      await axios.put(`https://vk-learnhub-1.onrender.com/instructor/users/${id}`, { name, email, role });
       alert("User updated successfully");
       setModal(null); fetchStudents();
     } catch (err) { alert(err.response?.data?.message || "Update failed"); }
@@ -63,7 +63,7 @@ function InstructorDashboard() {
   const deleteCourse = async (id) => {
     if (!window.confirm("Delete this course?")) return;
     try {
-      await axios.delete(`http://localhost:5000/courses/${id}`);
+      await axios.delete(`https://vk-learnhub-1.onrender.com/courses/${id}`);
       fetchCourses(); fetchStats();
     } catch (err) { alert(err.response?.data?.message || "Delete failed"); }
   };
@@ -71,10 +71,10 @@ function InstructorDashboard() {
   const saveCourse = async () => {
     try {
       if (modal.type === "addCourse") {
-        await axios.post("http://localhost:5000/courses", courseForm);
+        await axios.post("https://vk-learnhub-1.onrender.com/courses", courseForm);
         alert("Course added successfully");
       } else {
-        await axios.put(`http://localhost:5000/courses/${courseForm.id}`, courseForm);
+        await axios.put(`https://vk-learnhub-1.onrender.com/courses/${courseForm.id}`, courseForm);
         alert("Course updated successfully");
       }
       setModal(null); fetchCourses(); fetchStats();
@@ -95,14 +95,14 @@ function InstructorDashboard() {
   const deleteEnrollment = async (id) => {
     if (!window.confirm("Remove this enrollment?")) return;
     try {
-      await axios.delete(`http://localhost:5000/enrollments/${id}`);
+      await axios.delete(`https://vk-learnhub-1.onrender.com/enrollments/${id}`);
       fetchEnrollments(); fetchStats();
     } catch (err) { alert(err.response?.data?.message || "Delete failed"); }
   };
 
   const updateEnrollmentStatus = async (id, status) => {
     try {
-      await axios.put(`http://localhost:5000/instructor/enrollments/${id}`, { status });
+      await axios.put(`https://vk-learnhub-1.onrender.com/instructor/enrollments/${id}`, { status });
       fetchEnrollments();
     } catch (err) { alert(err.response?.data?.message || "Update failed"); }
   };

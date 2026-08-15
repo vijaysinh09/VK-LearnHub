@@ -10,7 +10,7 @@ function Editcourse() {
   const [course, setCourse] = useState({ title:"", description:"", duration:"", price:"" });
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/courses/${id}`)
+    axios.get(`https://vk-learnhub-1.onrender.com/courses/${id}`)
       .then(r => setCourse(r.data))
       .catch(console.error);
   }, [id]);
@@ -21,7 +21,7 @@ function Editcourse() {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/courses/${id}`, course);
+      await axios.put(`https://vk-learnhub-1.onrender.com/courses/${id}`, course);
       alert("Course updated successfully");
       navigate("/instructor-dashboard");
     } catch (err) {

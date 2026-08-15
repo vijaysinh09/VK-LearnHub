@@ -54,7 +54,7 @@ function Register() {
     setLoading(true);
     try {
       const { name, email, password } = user;
-      const res = await axios.post("http://localhost:5000/register", { name, email, password });
+      const res = await axios.post("https://vk-learnhub-1.onrender.com/register", { name, email, password });
       alert(res.data.message);
       navigate("/login");
     } catch (err) {

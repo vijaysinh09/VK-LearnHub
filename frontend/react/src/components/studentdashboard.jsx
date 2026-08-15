@@ -33,10 +33,10 @@ function StudentDashboard() {
   const totalSpent  = myCourses.reduce((s, c) => s + Number(c.price || 0), 0);
   const progressPct = myCourses.length ? Math.round((doneCount / myCourses.length) * 100) : 0;
 
-  const fetchCards      = () => axios.get("http://localhost:5000/cards").then(r => setCards(r.data)).catch(console.error);
-  const fetchMyCourses  = () => axios.get(`http://localhost:5000/enrollments/${loguser?.id}`).then(r => setMyCourses(r.data)).catch(console.error);
+  const fetchCards      = () => axios.get("https://vk-learnhub-1.onrender.com/cards").then(r => setCards(r.data)).catch(console.error);
+  const fetchMyCourses  = () => axios.get(`https://vk-learnhub-1.onrender.com/enrollments/${loguser?.id}`).then(r => setMyCourses(r.data)).catch(console.error);
   const fetchAllCourses = (page = 1) => {
-    axios.get(`http://localhost:5000/courses_pagination?page=${page}&limit=8`)
+    axios.get(`https://vk-learnhub-1.onrender.com/courses_pagination?page=${page}&limit=8`)
       .then(r => {
         setAllCourses(r.data.data);
         setTotalPages(r.data.totalPages);
@@ -62,7 +62,7 @@ function StudentDashboard() {
 
   const handleEnroll = async (courseId) => {
     try {
-      const res = await axios.post("http://localhost:5000/enrollments", {
+      const res = await axios.post("https://vk-learnhub-1.onrender.com/enrollments", {
         student_id: loguser.id,
         course_id: courseId
       });
@@ -76,7 +76,7 @@ function StudentDashboard() {
   const handleUnenroll = async (enrollmentId) => {
     if (!window.confirm("Are you sure you want to unenroll from this course?")) return;
     try {
-      await axios.delete(`http://localhost:5000/enrollments/${enrollmentId}`);
+      await axios.delete(`https://vk-learnhub-1.onrender.com/enrollments/${enrollmentId}`);
       fetchMyCourses(); fetchAllCourses();
     } catch (err) {
       alert(err.response?.data?.message || "Unenroll failed");
@@ -99,7 +99,7 @@ function StudentDashboard() {
     setChatLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:5000/chat", { message: userMessage, type: currentMode });
+      const res = await axios.post("https://vk-learnhub-1.onrender.com/chat", { message: userMessage, type: currentMode });
       setChatMessages(prev => ({...prev, [currentMode]: [...newMsgs, { role: "bot", content: res.data.reply }]}));
     } catch (err) {
       setChatMessages(prev => ({...prev, [currentMode]: [...newMsgs, { role: "bot", content: "Sorry, something went wrong." }]}));

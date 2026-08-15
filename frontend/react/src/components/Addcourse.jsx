@@ -30,7 +30,7 @@ function Addcourse() {
     e.preventDefault();
     if (!validate()) return;
     try {
-      const res = await axios.post("http://localhost:5000/courses", {
+      const res = await axios.post("https://vk-learnhub-1.onrender.com/courses", {
         ...course,
         instructor_id: loguser?.id
       });
