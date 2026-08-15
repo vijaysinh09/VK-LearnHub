@@ -10,7 +10,7 @@ import Courselist from './components/Courselist';
 import Coursedetails from './components/Coursedetails';
 import Addcourse from './components/Addcourse';
 import Editcourse from './components/Editcourse';
-import StudentDashboard from './components/StudentDashboard';
+import StudentDashboard from './components/studentdashboard';
 import InstructorDashboard from './components/InstructorDashboard';
 import CourseLearning from './components/CourseLearning';
 import './index.css';
