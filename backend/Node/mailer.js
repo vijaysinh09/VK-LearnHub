@@ -1,11 +1,11 @@
 const nodemailer=require("nodemailer");
 
 const transporter=nodemailer.createTransport({
-    host: "smtp-relay.brevo.com",
-    port: 587,
+    host: process.env.BREVO_HOST || "smtp-relay.brevo.com",
+    port: process.env.BREVO_PORT || 587,
     secure: false, // Use false for port 587
     auth: {
-        user: "b59b32001@smtp-brevo.com",
+        user: process.env.BREVO_USER || "",
         pass: process.env.BREVO_API_KEY || ""
     }
 });

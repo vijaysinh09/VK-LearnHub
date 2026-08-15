@@ -57,10 +57,12 @@ app.post("/chat", async (req, res) => {
 
 const db=mysql.createConnection
 ({
-    host : "localhost",
-    user : "root",
-    password : "",
-    database : "course_management"
+    host : process.env.DB_HOST || "localhost",
+    port : process.env.DB_PORT || 3306,
+    user : process.env.DB_USER || "root",
+    password : process.env.DB_PASSWORD || "",
+    database : process.env.DB_NAME || "course_management",
+    ssl: { rejectUnauthorized: false }
 }).promise();
 
 console.log("database connected successfully");
