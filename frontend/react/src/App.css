@@ -1,0 +1,4 @@
+/* App.css — intentionally minimal; all styling is per-component */
+* {
+  box-sizing: border-box;
+}

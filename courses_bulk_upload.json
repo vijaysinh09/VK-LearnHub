@@ -1,0 +1,24 @@
+{
+  "courses": [
+    { "title": "Advanced React Patterns", "description": "Learn advanced React hooks, context, and performance optimization.", "duration": "10 Hours", "price": 2999, "instructor_id": 1 },
+    { "title": "Node.js Microservices", "description": "Build scalable microservices using Node.js and Docker.", "duration": "15 Hours", "price": 3499, "instructor_id": 1 },
+    { "title": "UI/UX Design Masterclass", "description": "Master Figma and design principles for modern web apps.", "duration": "12 Hours", "price": 1999, "instructor_id": 1 },
+    { "title": "Python Data Science", "description": "Data analysis and machine learning with Python, Pandas, and Scikit-Learn.", "duration": "20 Hours", "price": 4999, "instructor_id": 1 },
+    { "title": "DevOps for Beginners", "description": "Introduction to CI/CD, AWS, and Linux administration.", "duration": "8 Hours", "price": 1499, "instructor_id": 1 },
+    { "title": "Cybersecurity Fundamentals", "description": "Learn ethical hacking and secure coding practices.", "duration": "18 Hours", "price": 3999, "instructor_id": 1 },
+    { "title": "Fullstack Next.js", "description": "Build production-ready SSR apps with Next.js 14.", "duration": "14 Hours", "price": 3299, "instructor_id": 1 },
+    { "title": "Mastering SQL", "description": "Deep dive into complex queries, joins, and database optimization.", "duration": "9 Hours", "price": 1299, "instructor_id": 1 },
+    { "title": "AWS Cloud Architect", "description": "Prepare for AWS Solutions Architect certification.", "duration": "30 Hours", "price": 5999, "instructor_id": 1 },
+    { "title": "Angular Pro", "description": "Build enterprise applications using Angular and RxJS.", "duration": "16 Hours", "price": 2899, "instructor_id": 1 },
+    { "title": "SvelteKit Fast Track", "description": "Learn SvelteKit to build high-performance web applications.", "duration": "7 Hours", "price": 1199, "instructor_id": 1 },
+    { "title": "Docker & Kubernetes", "description": "Containerize apps and manage them with Kubernetes.", "duration": "12 Hours", "price": 2499, "instructor_id": 1 },
+    { "title": "Ethical Hacking 101", "description": "Learn penetration testing basics and network security.", "duration": "14 Hours", "price": 3199, "instructor_id": 1 },
+    { "title": "Machine Learning with TF", "description": "TensorFlow basics, neural networks, and deep learning.", "duration": "25 Hours", "price": 5599, "instructor_id": 1 },
+    { "title": "Java Spring Boot", "description": "Backend development with Java and Spring Boot framework.", "duration": "18 Hours", "price": 3799, "instructor_id": 1 },
+    { "title": "C++ for Game Dev", "description": "Master C++ for Unreal Engine game development.", "duration": "22 Hours", "price": 4299, "instructor_id": 1 },
+    { "title": "Blockchain Basics", "description": "Understand smart contracts, Ethereum, and Solidity.", "duration": "10 Hours", "price": 1899, "instructor_id": 1 },
+    { "title": "Rust Programming", "description": "Learn Rust for systems programming and memory safety.", "duration": "12 Hours", "price": 2199, "instructor_id": 1 },
+    { "title": "Mobile Dev with Flutter", "description": "Cross-platform mobile apps with Flutter and Dart.", "duration": "15 Hours", "price": 2999, "instructor_id": 1 },
+    { "title": "Vue 3 Mastery", "description": "Learn Composition API, Vue Router, and Pinia.", "duration": "11 Hours", "price": 1799, "instructor_id": 1 }
+  ]
+}

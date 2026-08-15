@@ -1,0 +1,71 @@
+.edit-page {
+  min-height: 100vh;
+  padding: 3rem 1rem;
+  background: linear-gradient(135deg, #920aec 40%, #f7d1e5 100%);
+}
+
+.edit-card {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 1.5rem;
+  box-shadow: 0 18px 40px rgba(31, 41, 55, 0.16);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  padding: 2.25rem;
+}
+
+.edit-title {
+  color: #111827;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.edit-form {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.edit-label {
+  font-weight: 700;
+  color: #334155;
+}
+
+.edit-input {
+  border-radius: 1rem;
+  border: 1px solid #c7d2fe;
+  background: #ffffff;
+  color: #111827;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.edit-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.16);
+}
+
+.edit-btn {
+  border-radius: 1rem;
+  padding: 1rem 1.25rem;
+  font-weight: 700;
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+.edit-btn:hover {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+.edit-error {
+  color: #dc2626;
+  font-size: 0.92rem;
+  min-height: 1.2rem;
+  margin-top: 0.35rem;
+}
+
+@media (max-width: 600px) {
+  .edit-card { padding: 1.5rem; }
+  .edit-title { font-size: 1.6rem; }
+}

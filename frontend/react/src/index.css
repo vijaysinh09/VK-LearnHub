@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  /* ── New Brand Purple (refined, non-neon) ── */
+  --brand-50:  #EDE6F5;
+  --brand-100: #D8CBF0;
+  --brand-200: #B89FDE;
+  --brand-300: #A96FCB;
+  --brand-400: #8B54B8;
+  --brand-500: #6B3FA0;
+  --brand-600: #4C2A78;
+  --brand-700: #3A1F5E;
+  --brand-800: #2E1A47;
+  --brand-900: #1E1430;
+
+  /* ── Sidebar / Dark Neutrals ── */
+  --dark-900: #17141F;
+  --dark-800: #1E1B24;
+  --dark-700: #221D30;
+  --dark-600: #2E2740;
+  --dark-500: #3D3554;
+  --dark-400: #575363;
+  --dark-300: #8B84A0;
+  --dark-200: #C4C0CF;
+  --dark-100: #E9E6EF;
+  --dark-50:  #F7F6F9;
+
+  /* ── Stat Accents ── */
+  --accent-purple: #4C2A78;
+  --accent-blue:   #2F5680;
+  --accent-green:  #3E6A4C;
+  --accent-gold:   #7A5C1E;
+
+  /* ── Semantic ── */
+  --primary:        var(--brand-600);
+  --primary-hover:  var(--brand-700);
+  --primary-light:  var(--brand-50);
+  --text-primary:   var(--dark-800);
+  --text-secondary: var(--dark-400);
+  --border:         var(--dark-100);
+  --bg-page:        #F4F2FA;
+
+  /* ── Shadows ── */
+  --shadow-sm:     0 1px 3px rgba(30,20,48,.07);
+  --shadow:        0 4px 16px rgba(30,20,48,.10);
+  --shadow-lg:     0 12px 36px rgba(30,20,48,.14);
+  --shadow-brand:  0 8px 28px rgba(76,42,120,.28);
+
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--text-primary);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--bg-page);
+  color: var(--text-primary);
+}
+
+#root { width: 100%; min-height: 100vh; }
+
+/* ─── Shared Button System ─── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .22s ease;
+  text-decoration: none;
+  letter-spacing: .01em;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--brand-600) 0%, var(--brand-700) 100%);
+  color: #fff;
+  box-shadow: var(--shadow-brand);
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--brand-700) 0%, var(--brand-800) 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 32px rgba(76,42,120,.35);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--brand-600);
+  border: 1.5px solid var(--brand-200);
+}
+.btn-outline:hover {
+  background: var(--brand-50);
+  border-color: var(--brand-400);
+  transform: translateY(-1px);
+}
+
+.btn-danger  { background: #c0392b; color: #fff; }
+.btn-danger:hover  { background: #a93226; transform: translateY(-1px); }
+
+.btn-success { background: var(--accent-green); color: #fff; }
+.btn-success:hover { background: #2e5239; transform: translateY(-1px); }
+
+.btn-sm { padding: 5px 12px; font-size: 12px; border-radius: 8px; }
+.btn-lg { padding: 14px 28px; font-size: 16px; }
+
+/* ─── Status Badges ─── */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-transform: capitalize;
+}
+.badge-green  { background: #d4edda; color: #1a5c34; }
+.badge-blue   { background: #d0e4f5; color: #1a3e5c; }
+.badge-purple { background: var(--brand-50); color: var(--brand-700); }
+.badge-red    { background: #f5d0d0; color: #7a1515; }
+.badge-gray   { background: var(--dark-100); color: var(--dark-500); }
