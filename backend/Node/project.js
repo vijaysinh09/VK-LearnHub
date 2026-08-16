@@ -188,7 +188,7 @@ app.post("/register",async(req,res)=>
 
         // Run email sending in the background without await to avoid SMTP timeouts blocking the response
         transporter.sendMail({
-            from: `"VK LearnHub" <b59b32001@smtp-brevo.com>`,
+            from: `"VK LearnHub" <kamblevijaysinh09@gmail.com>`,
             to: email,
             subject: "Registration Successful – VK LearnHub",
             html: `
@@ -623,7 +623,7 @@ app.post("/enrollments/complete", async (req, res) => {
         // Send email
         // Run certificate email sending in the background without await
         transporter.sendMail({
-            from: `"VK LearnHub" <b59b32001@smtp-brevo.com>`,
+            from: `"VK LearnHub" <kamblevijaysinh09@gmail.com>`,
             to: student_email,
             subject: "Course Completion Certificate – VK LearnHub",
             html: `
