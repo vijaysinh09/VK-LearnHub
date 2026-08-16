@@ -9,7 +9,6 @@ function Home() {
     <div className="home-root">
       <Navbar />
 
-      {/* ── Hero ── */}
       <section className="home-hero">
         <div className="home-hero-inner">
           <p className="home-hero-label">Welcome to VK LearnHub</p>
@@ -30,7 +29,6 @@ function Home() {
         </div>
       </section>
 
-      {/* ── Quick stats ── */}
       <section className="home-stats">
         <div className="home-stats-inner">
           {[
@@ -47,7 +45,6 @@ function Home() {
         </div>
       </section>
 
-      {/* ── Footer ── */}
       <footer className="home-footer">
         <p>© 2026 VK LearnHub. All rights reserved.</p>
       </footer>

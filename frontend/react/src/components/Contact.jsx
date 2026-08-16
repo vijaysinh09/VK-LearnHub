@@ -38,7 +38,6 @@ function Contact() {
             </p>
           </div>
 
-          {/* Contact details */}
           <div className="contact-details">
             <div className="contact-detail-item">
               <span className="contact-detail-icon">📧</span>
@@ -67,7 +66,6 @@ function Contact() {
             </div>
           </div>
 
-          {/* Contact form */}
           <form className="contact-form" onSubmit={handleSubmit}>
             {submitted && (
               <div className="contact-success">

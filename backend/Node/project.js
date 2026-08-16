@@ -9,7 +9,7 @@ const dotenv = require("dotenv");
 const OpenAI = require("openai");
 
 dotenv.config({ path: require("path").resolve(__dirname, "../.env") });
-dotenv.config(); // fallback in case they run from Node/
+dotenv.config();
 
 const app = express();
 app.use(express.json());
@@ -158,7 +158,6 @@ app.post("/register", async (req, res) => {
     const isql = "insert into users(name,email,password,role)values(?,?,?,?)";
     await db.query(isql, [name, email, hashpass, "student"]);
 
-    // Run email sending in the background without await to avoid SMTP timeouts blocking the response
     transporter
       .sendMail({
         from: `"VK LearnHub" <kamblevijaysinh09@gmail.com>`,
@@ -187,8 +186,6 @@ app.post("/register", async (req, res) => {
     });
   }
 });
-
-
 
 app.post("/login", async (req, res) => {
   try {
@@ -486,7 +483,6 @@ app.post("/enrollments/complete", async (req, res) => {
     const { student_id, course_id, student_name, student_email, course_title } =
       req.body;
 
-    // Update database status
     const sql =
       "update enrollments set status='completed' where student_id=? and course_id=?";
     const [result] = await db.query(sql, [student_id, course_id]);
@@ -495,8 +491,6 @@ app.post("/enrollments/complete", async (req, res) => {
       return res.status(404).json({ message: "Enrollment not found" });
     }
 
-    // Send email
-    // Run certificate email sending in the background without await
     transporter
       .sendMail({
         from: `"VK LearnHub" <kamblevijaysinh09@gmail.com>`,
@@ -545,7 +539,6 @@ app.put("/instructor/users/:id", async (req, res) => {
   }
 });
 
-// Courses Bulk Upload API
 app.post("/courses/bulkupload", async (req, res) => {
   try {
     const courses = req.body.courses || [];
@@ -574,7 +567,6 @@ app.post("/courses/bulkupload", async (req, res) => {
   }
 });
 
-// Courses Pagination API
 app.get("/courses_pagination", async (req, res) => {
   try {
     const page = Number(req.query.page) || 1;

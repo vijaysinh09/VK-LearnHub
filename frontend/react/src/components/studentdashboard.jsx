@@ -36,13 +36,15 @@ const renderMarkdown = (content) => {
       >
         {isBullet && <span style={{ marginRight: "8px" }}>•</span>}
         <span style={{ flex: 1 }}>
-          {text.split(/(\*\*.*?\*\*)/).map((part, pIdx) =>
-            part.startsWith("**") && part.endsWith("**") ? (
-              <strong key={pIdx}>{part.slice(2, -2)}</strong>
-            ) : (
-              part
-            )
-          )}
+          {text
+            .split(/(\*\*.*?\*\*)/)
+            .map((part, pIdx) =>
+              part.startsWith("**") && part.endsWith("**") ? (
+                <strong key={pIdx}>{part.slice(2, -2)}</strong>
+              ) : (
+                part
+              ),
+            )}
         </span>
       </div>
     );
@@ -84,7 +86,6 @@ function StudentDashboard() {
   const [chatInput, setChatInput] = useState("");
   const [chatLoading, setChatLoading] = useState(false);
 
-  // Derived stats
   const activeCount = myCourses.filter((c) => c.status === "active").length;
   const doneCount = myCourses.filter((c) => c.status === "completed").length;
   const totalSpent = myCourses.reduce((s, c) => s + Number(c.price || 0), 0);
@@ -219,7 +220,6 @@ function StudentDashboard() {
 
   return (
     <div className="sd-layout">
-      {/* ── Sidebar ── */}
       <aside className="sd-sidebar">
         <div className="sd-sidebar-brand">
           <div className="sd-brand-logo">🎓</div>
@@ -254,9 +254,7 @@ function StudentDashboard() {
         </button>
       </aside>
 
-      {/* ── Main Content ── */}
       <main className="sd-main">
-        {/* ══ DASHBOARD HOME ══ */}
         {activePage === "dashboard" && (
           <>
             <div className="sd-page-header">
@@ -270,7 +268,6 @@ function StudentDashboard() {
               </div>
             </div>
 
-            {/* Stats */}
             <div className="sd-stats">
               <div className="sd-stat-card purple">
                 <div className="sd-stat-icon">📚</div>
@@ -295,7 +292,6 @@ function StudentDashboard() {
             </div>
 
             <div className="sd-grid">
-              {/* My Courses widget */}
               <div className="sd-widget">
                 <div className="sd-widget-header">
                   <div className="sd-widget-title">📘 My Courses</div>
@@ -356,7 +352,6 @@ function StudentDashboard() {
                 )}
               </div>
 
-              {/* Learning Summary */}
               <div className="sd-widget">
                 <div className="sd-widget-header">
                   <div className="sd-widget-title">📊 Learning Summary</div>
@@ -401,7 +396,6 @@ function StudentDashboard() {
                 </div>
               </div>
 
-              {/* Recommendations */}
               <div className="sd-widget">
                 <div className="sd-widget-header">
                   <div className="sd-widget-title">✨ Recommended For You</div>
@@ -433,7 +427,6 @@ function StudentDashboard() {
                 )}
               </div>
 
-              {/* Notifications */}
               <div className="sd-widget">
                 <div className="sd-widget-header">
                   <div className="sd-widget-title">🔔 Recent Activity</div>
@@ -454,7 +447,6 @@ function StudentDashboard() {
                 )}
               </div>
 
-              {/* Platform stats */}
               <div className="sd-widget sd-grid-full">
                 <div className="sd-widget-header">
                   <div className="sd-widget-title">🌐 Platform Overview</div>
@@ -529,7 +521,6 @@ function StudentDashboard() {
           </>
         )}
 
-        {/* ══ AVAILABLE COURSES ══ */}
         {activePage === "courses" && (
           <>
             <div className="sd-page-header">
@@ -628,7 +619,6 @@ function StudentDashboard() {
           </>
         )}
 
-        {/* ══ MY ENROLLMENTS ══ */}
         {activePage === "enrolled" && (
           <>
             <div className="sd-page-header">
@@ -720,7 +710,6 @@ function StudentDashboard() {
           </>
         )}
 
-        {/* ══ PROGRESS ══ */}
         {activePage === "progress" && (
           <>
             <div className="sd-page-header">
@@ -838,7 +827,6 @@ function StudentDashboard() {
           </>
         )}
 
-        {/* ══ PAYMENT HISTORY ══ */}
         {activePage === "payments" && (
           <>
             <div className="sd-page-header">
@@ -923,7 +911,6 @@ function StudentDashboard() {
           </>
         )}
 
-        {/* ══ PROFILE ══ */}
         {activePage === "profile" && (
           <>
             <div className="sd-page-header">
@@ -997,9 +984,7 @@ function StudentDashboard() {
         )}
       </main>
 
-      {/* ── Floating Chatbot ── */}
       <div className="sd-chatbot-container">
-        {/* Chat Window */}
         {openBot && (
           <div className="sd-chat-window">
             <div
@@ -1073,7 +1058,6 @@ function StudentDashboard() {
           </div>
         )}
 
-        {/* Floating Buttons */}
         {!openBot && (
           <div className="sd-chat-buttons">
             <div

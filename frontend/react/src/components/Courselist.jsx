@@ -63,7 +63,6 @@ function Courselist() {
         <h1 className="cl-title">📚 All Courses</h1>
       </div>
 
-      {/* ✅ Search bar center मध्ये */}
       <div className="cl-search-wrapper">
         <input
           className="cl-search"
@@ -87,7 +86,7 @@ function Courselist() {
             <div key={c.id} className="cl-card">
               <div className="cl-card-emoji">{EMOJIS[i % EMOJIS.length]}</div>
               <div className="cl-card-title">{c.title}</div>
-              {/* <div className="cl-card-desc">{c.description}</div> */}
+
               <div className="cl-card-meta">
                 <span>⏱ {c.duration}</span>
               </div>

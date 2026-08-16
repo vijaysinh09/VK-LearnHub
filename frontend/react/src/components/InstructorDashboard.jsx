@@ -13,15 +13,12 @@ function InstructorDashboard() {
   const [courses, setCourses] = useState([]);
   const [enrollments, setEnrollments] = useState([]);
 
-  // Search/filter states
   const [studentSearch, setStudentSearch] = useState("");
   const [courseSearch, setCourseSearch] = useState("");
   const [enrollSearch, setEnrollSearch] = useState("");
 
-  // Modal states
   const [modal, setModal] = useState(null); // {type:'addCourse'|'editCourse'|'editUser'|'editEnrollment', data:{}}
 
-  // Course form
   const [courseForm, setCourseForm] = useState({
     title: "",
     description: "",
@@ -51,11 +48,6 @@ function InstructorDashboard() {
       .then((r) => setEnrollments(r.data))
       .catch(console.error);
 
-  // useEffect(() => {
-  //   if (!loguser || loguser.role !== "instructor") { navigate("/instructor-login"); return; }
-  //   fetchStats(); fetchStudents(); fetchCourses(); fetchEnrollments();
-  // }, []);
-
   useEffect(() => {
     if (!loguser || loguser.role !== "instructor") {
       navigate("/instructor-login");
@@ -72,7 +64,6 @@ function InstructorDashboard() {
     navigate("/instructor-login");
   };
 
-  // ─── Student actions ───
   const deleteUser = async (id) => {
     if (!window.confirm("Delete this user? This cannot be undone.")) return;
     try {
@@ -99,7 +90,6 @@ function InstructorDashboard() {
     }
   };
 
-  // ─── Course actions ───
   const deleteCourse = async (id) => {
     if (!window.confirm("Delete this course?")) return;
     try {
@@ -150,7 +140,6 @@ function InstructorDashboard() {
     setModal({ type: "editCourse" });
   };
 
-  // ─── Enrollment actions ───
   const deleteEnrollment = async (id) => {
     if (!window.confirm("Remove this enrollment?")) return;
     try {
@@ -186,7 +175,6 @@ function InstructorDashboard() {
     { id: "reports", icon: "📈", label: "Reports & Stats" },
   ];
 
-  // Filtered lists
   const filteredStudents = students.filter(
     (s) =>
       s.name.toLowerCase().includes(studentSearch.toLowerCase()) ||
@@ -205,7 +193,6 @@ function InstructorDashboard() {
 
   return (
     <div className="ad-layout">
-      {/* ── Sidebar ── */}
       <aside className="ad-sidebar">
         <div className="ad-sidebar-brand">
           <div className="ad-brand-logo">🛡️</div>
@@ -240,9 +227,7 @@ function InstructorDashboard() {
         </button>
       </aside>
 
-      {/* ── Main Content ── */}
       <main className="ad-main">
-        {/* ══ DASHBOARD ══ */}
         {activePage === "dashboard" && (
           <>
             <div className="ad-page-header">
@@ -295,9 +280,7 @@ function InstructorDashboard() {
               </div>
             </div>
 
-            {/* Quick tables */}
             <div className="ad-grid">
-              {/* Recent Enrollments */}
               <div className="ad-widget">
                 <div className="ad-widget-header">
                   <div className="ad-widget-title">🕐 Recent Enrollments</div>
@@ -337,7 +320,6 @@ function InstructorDashboard() {
                 )}
               </div>
 
-              {/* Recent Courses */}
               <div className="ad-widget">
                 <div className="ad-widget-header">
                   <div className="ad-widget-title">📚 Course Overview</div>
@@ -381,7 +363,6 @@ function InstructorDashboard() {
           </>
         )}
 
-        {/* ══ MANAGE STUDENTS ══ */}
         {activePage === "students" && (
           <>
             <div className="ad-page-header">
@@ -457,7 +438,6 @@ function InstructorDashboard() {
           </>
         )}
 
-        {/* ══ MANAGE COURSES ══ */}
         {activePage === "courses" && (
           <>
             <div className="ad-page-header">
@@ -554,7 +534,6 @@ function InstructorDashboard() {
           </>
         )}
 
-        {/* ══ ENROLLMENTS ══ */}
         {activePage === "enrollments" && (
           <>
             <div className="ad-page-header">
@@ -654,7 +633,6 @@ function InstructorDashboard() {
           </>
         )}
 
-        {/* ══ REPORTS ══ */}
         {activePage === "reports" && (
           <>
             <div className="ad-page-header">
@@ -818,9 +796,6 @@ function InstructorDashboard() {
         )}
       </main>
 
-      {/* ── Modals ── */}
-
-      {/* Edit User Modal */}
       {modal?.type === "editUser" && (
         <div className="ad-modal-overlay" onClick={() => setModal(null)}>
           <div className="ad-modal" onClick={(e) => e.stopPropagation()}>
@@ -883,7 +858,6 @@ function InstructorDashboard() {
         </div>
       )}
 
-      {/* Add/Edit Course Modal */}
       {(modal?.type === "addCourse" || modal?.type === "editCourse") && (
         <div className="ad-modal-overlay" onClick={() => setModal(null)}>
           <div className="ad-modal" onClick={(e) => e.stopPropagation()}>

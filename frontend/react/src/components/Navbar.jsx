@@ -19,7 +19,6 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-inner">
-        {/* Brand */}
         <div className="navbar-brand" onClick={() => navigate("/")}>
           <span className="navbar-brand-icon">🎓</span>
           <span className="navbar-brand-name">
@@ -27,7 +26,6 @@ function Navbar() {
           </span>
         </div>
 
-        {/* Desktop links */}
         <ul className="navbar-links">
           {links.map((link) => (
             <li key={link.path}>
@@ -41,14 +39,12 @@ function Navbar() {
           ))}
         </ul>
 
-        {/* Sign In */}
         <div className="navbar-actions">
           <button className="navbar-signin" onClick={() => navigate("/login")}>
             Sign In
           </button>
         </div>
 
-        {/* Hamburger */}
         <button
           className={`navbar-hamburger${menuOpen ? " open" : ""}`}
           onClick={() => setMenuOpen((m) => !m)}
@@ -60,7 +56,6 @@ function Navbar() {
         </button>
       </div>
 
-      {/* Mobile dropdown */}
       {menuOpen && (
         <div className="navbar-mobile">
           {links.map((link) => (
