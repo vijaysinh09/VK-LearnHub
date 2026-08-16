@@ -276,5 +276,5 @@
   .cl-title { font-size: 20px; }
   .cl-notes-section { padding: 20px; }
   .cl-question-card { padding: 20px; }
-  .cl-submit-btn { width: 100%; justify-content: center; }
+  .cl-submit-btn { padding: 14px 24px; font-size: 16px; justify-content: center; width: auto; }
 }
