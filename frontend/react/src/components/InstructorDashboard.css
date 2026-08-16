@@ -202,7 +202,7 @@
 @media (max-width: 700px) {
   .ad-layout { flex-direction: column; }
   .ad-sidebar { 
-    width: 100%; height: auto; position: sticky; top: 0; z-index: 100;
+    width: 100%; height: auto; min-height: auto; position: sticky; top: 0; z-index: 100;
     padding: 12px 16px; flex-direction: row; align-items: center; 
     box-shadow: 0 4px 16px rgba(0,0,0,0.15);
   }
