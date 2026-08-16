@@ -16,6 +16,39 @@ const COURSE_EMOJIS = [
   "🔬",
 ];
 
+const renderMarkdown = (content) => {
+  if (typeof content !== "string") return content;
+  return content.split("\n").map((line, idx) => {
+    let isBullet = false;
+    let text = line;
+    if (text.trim().startsWith("* ") || text.trim().startsWith("- ")) {
+      isBullet = true;
+      text = text.trim().substring(2);
+    }
+    return (
+      <div
+        key={idx}
+        style={{
+          marginBottom: text.trim() === "" ? "8px" : "2px",
+          marginLeft: isBullet ? "16px" : "0",
+          display: "flex",
+        }}
+      >
+        {isBullet && <span style={{ marginRight: "8px" }}>•</span>}
+        <span style={{ flex: 1 }}>
+          {text.split(/(\*\*.*?\*\*)/).map((part, pIdx) =>
+            part.startsWith("**") && part.endsWith("**") ? (
+              <strong key={pIdx}>{part.slice(2, -2)}</strong>
+            ) : (
+              part
+            )
+          )}
+        </span>
+      </div>
+    );
+  });
+};
+
 function StudentDashboard() {
   const navigate = useNavigate();
   const loguser = JSON.parse(sessionStorage.getItem("users"));
@@ -1009,7 +1042,7 @@ function StudentDashboard() {
                       : {}
                   }
                 >
-                  {msg.content}
+                  {renderMarkdown(msg.content)}
                 </div>
               ))}
               {chatLoading && (

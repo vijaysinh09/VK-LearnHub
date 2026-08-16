@@ -39,7 +39,7 @@ app.post("/chat", async (req, res) => {
     messages.push({ role: "user", content: message });
 
     const response = await client.chat.completions.create({
-      model: "openrouter/free",
+      model: "google/gemma-4-31b-it:free",
       messages: messages,
     });
 
@@ -188,24 +188,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
-app.post("/register-instructor", async (req, res) => {
-  try {
-    const { name, email, password } = req.body;
-    const sql = "select * from users where email=?";
-    const [result] = await db.query(sql, [email]);
-    if (result.length > 0)
-      return res.status(400).json({ message: "email already exists" });
 
-    const hashpass = await bcrypt.hash(password, 10);
-    // Registering user with 'instructor' role
-    const isql = "insert into users(name,email,password,role)values(?,?,?,?)";
-    await db.query(isql, [name, email, hashpass, "instructor"]);
-
-    res.json({ message: "instructor registration successful" });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
 
 app.post("/login", async (req, res) => {
   try {
