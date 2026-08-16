@@ -1,5 +1,5 @@
-import Navbar from './Navbar';
-import './Page.css';
+import Navbar from "./Navbar";
+import "./Page.css";
 
 function Features() {
   return (
@@ -13,18 +13,18 @@ function Features() {
           <div className="page-content">
             <p>
               VK LearnHub offers a straightforward and comfortable learning
-              environment. Once you register and log in, you get immediate access
-              to a growing catalogue of courses. Each course page shows a clear
-              description, duration, and pricing information so you can make an
-              informed decision before enrolling.
+              environment. Once you register and log in, you get immediate
+              access to a growing catalogue of courses. Each course page shows a
+              clear description, duration, and pricing information so you can
+              make an informed decision before enrolling.
             </p>
 
             <p>
               Courses are taught by experienced instructors who structure their
               content in a logical, easy-to-follow manner. The platform lets you
-              enrol in multiple courses at the same time, so you can learn at your
-              own pace and manage your schedule freely. There are no fixed class
-              timings — you decide when and how much to study.
+              enrol in multiple courses at the same time, so you can learn at
+              your own pace and manage your schedule freely. There are no fixed
+              class timings — you decide when and how much to study.
             </p>
 
             <p>
@@ -35,10 +35,11 @@ function Features() {
             </p>
 
             <p>
-              For instructors and instructoristrators, the platform includes a dedicated
-              management panel. From there, courses can be added, edited, or
-              removed, and student enrollments can be monitored and updated. This
-              makes it easy to keep the course catalogue fresh and relevant.
+              For instructors and instructoristrators, the platform includes a
+              dedicated management panel. From there, courses can be added,
+              edited, or removed, and student enrollments can be monitored and
+              updated. This makes it easy to keep the course catalogue fresh and
+              relevant.
             </p>
 
             <p>
@@ -59,4 +60,3 @@ function Features() {
 }
 
 export default Features;
-

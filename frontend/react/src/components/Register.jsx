@@ -6,7 +6,12 @@ import "../auth.css";
 function Register() {
   const navigate = useNavigate();
 
-  const [user, setUser] = useState({ name: "", email: "", password: "", confirmPassword: "" });
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -21,16 +26,19 @@ function Register() {
     }
     if (name === "email") {
       if (!value) newErrors.email = "Email is required";
-      else if (!/\S+@\S+\.\S+/.test(value)) newErrors.email = "Invalid email address";
+      else if (!/\S+@\S+\.\S+/.test(value))
+        newErrors.email = "Invalid email address";
       else delete newErrors.email;
     }
     if (name === "password") {
       if (!value) newErrors.password = "Password is required";
-      else if (value.length < 6) newErrors.password = "Password must be at least 6 characters";
+      else if (value.length < 6)
+        newErrors.password = "Password must be at least 6 characters";
       else delete newErrors.password;
     }
     if (name === "confirmPassword") {
-      if (value !== user.password) newErrors.confirmPassword = "Passwords do not match";
+      if (value !== user.password)
+        newErrors.confirmPassword = "Passwords do not match";
       else delete newErrors.confirmPassword;
     }
     setErrors(newErrors);
@@ -40,10 +48,13 @@ function Register() {
     let newErrors = {};
     if (!user.name.trim()) newErrors.name = "Full name is required";
     if (!user.email) newErrors.email = "Email is required";
-    else if (!/\S+@\S+\.\S+/.test(user.email)) newErrors.email = "Invalid email address";
+    else if (!/\S+@\S+\.\S+/.test(user.email))
+      newErrors.email = "Invalid email address";
     if (!user.password) newErrors.password = "Password is required";
-    else if (user.password.length < 6) newErrors.password = "Password must be at least 6 characters";
-    if (user.confirmPassword !== user.password) newErrors.confirmPassword = "Passwords do not match";
+    else if (user.password.length < 6)
+      newErrors.password = "Password must be at least 6 characters";
+    if (user.confirmPassword !== user.password)
+      newErrors.confirmPassword = "Passwords do not match";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -54,11 +65,16 @@ function Register() {
     setLoading(true);
     try {
       const { name, email, password } = user;
-      const res = await axios.post("https://vk-learnhub-1.onrender.com/register", { name, email, password });
+      const res = await axios.post(
+        "https://vk-learnhub-1.onrender.com/register",
+        { name, email, password },
+      );
       alert(res.data.message);
       navigate("/login");
     } catch (err) {
-      alert(err.response?.data?.message || "Registration failed. Please try again.");
+      alert(
+        err.response?.data?.message || "Registration failed. Please try again.",
+      );
     } finally {
       setLoading(false);
     }
@@ -73,7 +89,9 @@ function Register() {
         </div>
 
         <h2 className="auth-title">Create your account</h2>
-        <p className="auth-subtitle">Join thousands of students and start learning today.</p>
+        <p className="auth-subtitle">
+          Join thousands of students and start learning today.
+        </p>
 
         <form onSubmit={submitHandler} className="auth-form">
           <div className="auth-field">
@@ -101,7 +119,9 @@ function Register() {
               className="auth-input"
               autoComplete="email"
             />
-            {errors.email && <span className="auth-error">⚠ {errors.email}</span>}
+            {errors.email && (
+              <span className="auth-error">⚠ {errors.email}</span>
+            )}
           </div>
 
           <div className="auth-field">
@@ -115,7 +135,9 @@ function Register() {
               className="auth-input"
               autoComplete="new-password"
             />
-            {errors.password && <span className="auth-error">⚠ {errors.password}</span>}
+            {errors.password && (
+              <span className="auth-error">⚠ {errors.password}</span>
+            )}
           </div>
 
           <div className="auth-field">
@@ -128,7 +150,9 @@ function Register() {
               placeholder="Repeat your password"
               className="auth-input"
             />
-            {errors.confirmPassword && <span className="auth-error">⚠ {errors.confirmPassword}</span>}
+            {errors.confirmPassword && (
+              <span className="auth-error">⚠ {errors.confirmPassword}</span>
+            )}
           </div>
 
           <button type="submit" className="auth-btn" disabled={loading}>

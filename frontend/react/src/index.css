@@ -1,52 +1,56 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
 :root {
   /* ── New Brand Purple (refined, non-neon) ── */
-  --brand-50:  #EDE6F5;
-  --brand-100: #D8CBF0;
-  --brand-200: #B89FDE;
-  --brand-300: #A96FCB;
-  --brand-400: #8B54B8;
-  --brand-500: #6B3FA0;
-  --brand-600: #4C2A78;
-  --brand-700: #3A1F5E;
-  --brand-800: #2E1A47;
-  --brand-900: #1E1430;
+  --brand-50: #ede6f5;
+  --brand-100: #d8cbf0;
+  --brand-200: #b89fde;
+  --brand-300: #a96fcb;
+  --brand-400: #8b54b8;
+  --brand-500: #6b3fa0;
+  --brand-600: #4c2a78;
+  --brand-700: #3a1f5e;
+  --brand-800: #2e1a47;
+  --brand-900: #1e1430;
 
   /* ── Sidebar / Dark Neutrals ── */
-  --dark-900: #17141F;
-  --dark-800: #1E1B24;
-  --dark-700: #221D30;
-  --dark-600: #2E2740;
-  --dark-500: #3D3554;
+  --dark-900: #17141f;
+  --dark-800: #1e1b24;
+  --dark-700: #221d30;
+  --dark-600: #2e2740;
+  --dark-500: #3d3554;
   --dark-400: #575363;
-  --dark-300: #8B84A0;
-  --dark-200: #C4C0CF;
-  --dark-100: #E9E6EF;
-  --dark-50:  #F7F6F9;
+  --dark-300: #8b84a0;
+  --dark-200: #c4c0cf;
+  --dark-100: #e9e6ef;
+  --dark-50: #f7f6f9;
 
   /* ── Stat Accents ── */
-  --accent-purple: #4C2A78;
-  --accent-blue:   #2F5680;
-  --accent-green:  #3E6A4C;
-  --accent-gold:   #7A5C1E;
+  --accent-purple: #4c2a78;
+  --accent-blue: #2f5680;
+  --accent-green: #3e6a4c;
+  --accent-gold: #7a5c1e;
 
   /* ── Semantic ── */
-  --primary:        var(--brand-600);
-  --primary-hover:  var(--brand-700);
-  --primary-light:  var(--brand-50);
-  --text-primary:   var(--dark-800);
+  --primary: var(--brand-600);
+  --primary-hover: var(--brand-700);
+  --primary-light: var(--brand-50);
+  --text-primary: var(--dark-800);
   --text-secondary: var(--dark-400);
-  --border:         var(--dark-100);
-  --bg-page:        #F4F2FA;
+  --border: var(--dark-100);
+  --bg-page: #f4f2fa;
 
   /* ── Shadows ── */
-  --shadow-sm:     0 1px 3px rgba(30,20,48,.07);
-  --shadow:        0 4px 16px rgba(30,20,48,.10);
-  --shadow-lg:     0 12px 36px rgba(30,20,48,.14);
-  --shadow-brand:  0 8px 28px rgba(76,42,120,.28);
+  --shadow-sm: 0 1px 3px rgba(30, 20, 48, 0.07);
+  --shadow: 0 4px 16px rgba(30, 20, 48, 0.1);
+  --shadow-lg: 0 12px 36px rgba(30, 20, 48, 0.14);
+  --shadow-brand: 0 8px 28px rgba(76, 42, 120, 0.28);
 
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color: var(--text-primary);
@@ -55,7 +59,11 @@
   -webkit-font-smoothing: antialiased;
 }
 
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -65,7 +73,10 @@ body {
   color: var(--text-primary);
 }
 
-#root { width: 100%; min-height: 100vh; }
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
 
 /* ─── Shared Button System ─── */
 .btn {
@@ -76,24 +87,32 @@ body {
   padding: 10px 20px;
   border: none;
   border-radius: 10px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: all .22s ease;
+  transition: all 0.22s ease;
   text-decoration: none;
-  letter-spacing: .01em;
+  letter-spacing: 0.01em;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--brand-600) 0%, var(--brand-700) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--brand-600) 0%,
+    var(--brand-700) 100%
+  );
   color: #fff;
   box-shadow: var(--shadow-brand);
 }
 .btn-primary:hover {
-  background: linear-gradient(135deg, var(--brand-700) 0%, var(--brand-800) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--brand-700) 0%,
+    var(--brand-800) 100%
+  );
   transform: translateY(-1px);
-  box-shadow: 0 10px 32px rgba(76,42,120,.35);
+  box-shadow: 0 10px 32px rgba(76, 42, 120, 0.35);
 }
 
 .btn-outline {
@@ -107,14 +126,33 @@ body {
   transform: translateY(-1px);
 }
 
-.btn-danger  { background: #c0392b; color: #fff; }
-.btn-danger:hover  { background: #a93226; transform: translateY(-1px); }
+.btn-danger {
+  background: #c0392b;
+  color: #fff;
+}
+.btn-danger:hover {
+  background: #a93226;
+  transform: translateY(-1px);
+}
 
-.btn-success { background: var(--accent-green); color: #fff; }
-.btn-success:hover { background: #2e5239; transform: translateY(-1px); }
+.btn-success {
+  background: var(--accent-green);
+  color: #fff;
+}
+.btn-success:hover {
+  background: #2e5239;
+  transform: translateY(-1px);
+}
 
-.btn-sm { padding: 5px 12px; font-size: 12px; border-radius: 8px; }
-.btn-lg { padding: 14px 28px; font-size: 16px; }
+.btn-sm {
+  padding: 5px 12px;
+  font-size: 12px;
+  border-radius: 8px;
+}
+.btn-lg {
+  padding: 14px 28px;
+  font-size: 16px;
+}
 
 /* ─── Status Badges ─── */
 .badge {
@@ -123,11 +161,26 @@ body {
   border-radius: 999px;
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: .03em;
+  letter-spacing: 0.03em;
   text-transform: capitalize;
 }
-.badge-green  { background: #d4edda; color: #1a5c34; }
-.badge-blue   { background: #d0e4f5; color: #1a3e5c; }
-.badge-purple { background: var(--brand-50); color: var(--brand-700); }
-.badge-red    { background: #f5d0d0; color: #7a1515; }
-.badge-gray   { background: var(--dark-100); color: var(--dark-500); }
+.badge-green {
+  background: #d4edda;
+  color: #1a5c34;
+}
+.badge-blue {
+  background: #d0e4f5;
+  color: #1a3e5c;
+}
+.badge-purple {
+  background: var(--brand-50);
+  color: var(--brand-700);
+}
+.badge-red {
+  background: #f5d0d0;
+  color: #7a1515;
+}
+.badge-gray {
+  background: var(--dark-100);
+  color: var(--dark-500);
+}

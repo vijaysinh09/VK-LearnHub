@@ -16,7 +16,8 @@ function InstructorLogin() {
     let newErrors = { ...errors };
     if (name === "email") {
       if (!value) newErrors.email = "Email is required";
-      else if (!/\S+@\S+\.\S+/.test(value)) newErrors.email = "Invalid email address";
+      else if (!/\S+@\S+\.\S+/.test(value))
+        newErrors.email = "Invalid email address";
       else delete newErrors.email;
     }
     if (name === "password") {
@@ -39,7 +40,10 @@ function InstructorLogin() {
     if (!validate()) return;
     setLoading(true);
     try {
-      const res = await axios.post("https://vk-learnhub-1.onrender.com/login", user);
+      const res = await axios.post(
+        "https://vk-learnhub-1.onrender.com/login",
+        user,
+      );
       if (res.data.user.role !== "instructor") {
         alert("Access denied. This portal is for instructor only.");
         return;
@@ -62,7 +66,9 @@ function InstructorLogin() {
         </div>
 
         <h2 className="auth-title">Instructor Login</h2>
-        <p className="auth-subtitle">Restricted access — authorized personnel only.</p>
+        <p className="auth-subtitle">
+          Restricted access — authorized personnel only.
+        </p>
 
         <form onSubmit={submitHandler} className="auth-form">
           <div className="auth-field">
@@ -75,7 +81,9 @@ function InstructorLogin() {
               placeholder="don@example.com"
               className="auth-input"
             />
-            {errors.email && <span className="auth-error">⚠ {errors.email}</span>}
+            {errors.email && (
+              <span className="auth-error">⚠ {errors.email}</span>
+            )}
           </div>
 
           <div className="auth-field">
@@ -88,7 +96,9 @@ function InstructorLogin() {
               placeholder="Instructor password"
               className="auth-input"
             />
-            {errors.password && <span className="auth-error">⚠ {errors.password}</span>}
+            {errors.password && (
+              <span className="auth-error">⚠ {errors.password}</span>
+            )}
           </div>
 
           <button type="submit" className="auth-btn" disabled={loading}>
@@ -101,8 +111,8 @@ function InstructorLogin() {
         </p>
         <div style={{ textAlign: "center", marginTop: "1rem" }}>
           <p className="auth-footer">
-          <Link to="/">← Back to Home</Link>
-        </p>
+            <Link to="/">← Back to Home</Link>
+          </p>
         </div>
       </div>
     </div>
@@ -110,4 +120,3 @@ function InstructorLogin() {
 }
 
 export default InstructorLogin;
-

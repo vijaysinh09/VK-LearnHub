@@ -46,7 +46,10 @@
   padding: 1rem 1rem;
   background: #ffffff;
   color: #111827;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
 .addcourse-input:focus,
@@ -85,6 +88,10 @@
 }
 
 @media (max-width: 600px) {
-  .addcourse-card { padding: 1.5rem; }
-  .addcourse-title { font-size: 1.6rem; }
+  .addcourse-card {
+    padding: 1.5rem;
+  }
+  .addcourse-title {
+    font-size: 1.6rem;
+  }
 }

@@ -68,7 +68,9 @@
   padding: 7px 16px;
   border-radius: 8px;
   cursor: pointer;
-  transition: color 0.18s, background 0.18s;
+  transition:
+    color 0.18s,
+    background 0.18s;
 }
 .navbar-link:hover {
   color: #9333ea;
@@ -95,7 +97,9 @@
   padding: 8px 20px;
   border-radius: 8px;
   cursor: pointer;
-  transition: opacity 0.2s, transform 0.2s;
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
 }
 .navbar-signin:hover {
   opacity: 0.88;
@@ -153,7 +157,9 @@
   cursor: pointer;
   transition: color 0.18s;
 }
-.navbar-mobile-link:hover { color: #9333ea; }
+.navbar-mobile-link:hover {
+  color: #9333ea;
+}
 .navbar-mobile-signin {
   margin-top: 10px;
   background: linear-gradient(135deg, #9333ea, #7e22ce);

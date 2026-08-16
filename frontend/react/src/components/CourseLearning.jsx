@@ -8,14 +8,19 @@ function CourseLearning() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const course = location.state?.course || { title: "Loading Course...", courseId: id };
+  const course = location.state?.course || {
+    title: "Loading Course...",
+    courseId: id,
+  };
   const loguser = JSON.parse(sessionStorage.getItem("users"));
 
   // Check if already completed to prevent duplicate submissions
   const isAlreadyCompleted = course.status === "completed";
 
   const [progress, setProgress] = useState(isAlreadyCompleted ? 100 : 0);
-  const [answeredQuestions, setAnsweredQuestions] = useState(isAlreadyCompleted ? [0, 1, 2, 3, 4] : []);
+  const [answeredQuestions, setAnsweredQuestions] = useState(
+    isAlreadyCompleted ? [0, 1, 2, 3, 4] : [],
+  );
   const [showConfetti, setShowConfetti] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -56,30 +61,36 @@ Practice writing SQL queries daily. A strong command over database relationships
         questions: [
           {
             question: "What does SQL stand for?",
-            options: ["Structured Query Language", "Strong Question Language", "Structured Quick Logic", "System Query Language"],
-            answer: "Structured Query Language"
+            options: [
+              "Structured Query Language",
+              "Strong Question Language",
+              "Structured Quick Logic",
+              "System Query Language",
+            ],
+            answer: "Structured Query Language",
           },
           {
             question: "Which command is used to extract data from a database?",
             options: ["EXTRACT", "GET", "SELECT", "PULL"],
-            answer: "SELECT"
+            answer: "SELECT",
           },
           {
             question: "What uniquely identifies each record in a table?",
             options: ["Unique Key", "Primary Key", "Foreign Key", "Master Key"],
-            answer: "Primary Key"
+            answer: "Primary Key",
           },
           {
-            question: "Which feature is used to combine rows from two or more tables?",
+            question:
+              "Which feature is used to combine rows from two or more tables?",
             options: ["MERGE", "COMBINE", "JOIN", "CONNECT"],
-            answer: "JOIN"
+            answer: "JOIN",
           },
           {
             question: "Which command updates existing data in a database?",
             options: ["MODIFY", "CHANGE", "ALTER", "UPDATE"],
-            answer: "UPDATE"
-          }
-        ]
+            answer: "UPDATE",
+          },
+        ],
       };
     } else if (lowerTitle.includes("react")) {
       return {
@@ -117,30 +128,43 @@ useEffect(() => {
         questions: [
           {
             question: "What is React primarily used for?",
-            options: ["Database management", "Building user interfaces", "Server-side routing", "Operating Systems"],
-            answer: "Building user interfaces"
+            options: [
+              "Database management",
+              "Building user interfaces",
+              "Server-side routing",
+              "Operating Systems",
+            ],
+            answer: "Building user interfaces",
           },
           {
             question: "What syntax allows us to write HTML inside JavaScript?",
             options: ["XML", "JSON", "JSX", "HTMLX"],
-            answer: "JSX"
+            answer: "JSX",
           },
           {
-            question: "How do you pass data from a parent component to a child component?",
-            options: ["Using State", "Using Props", "Using Context", "Using Redux"],
-            answer: "Using Props"
+            question:
+              "How do you pass data from a parent component to a child component?",
+            options: [
+              "Using State",
+              "Using Props",
+              "Using Context",
+              "Using Redux",
+            ],
+            answer: "Using Props",
           },
           {
-            question: "Which Hook is used to manage changing data in a component?",
+            question:
+              "Which Hook is used to manage changing data in a component?",
             options: ["useData", "useFetch", "useState", "useEffect"],
-            answer: "useState"
+            answer: "useState",
           },
           {
-            question: "Which Hook is commonly used for fetching API data when a component loads?",
+            question:
+              "Which Hook is commonly used for fetching API data when a component loads?",
             options: ["useState", "useEffect", "useAPI", "useContext"],
-            answer: "useEffect"
-          }
-        ]
+            answer: "useEffect",
+          },
+        ],
       };
     } else if (lowerTitle.includes("node") || lowerTitle.includes("express")) {
       return {
@@ -180,30 +204,41 @@ Middleware functions are functions that have access to the request object (req) 
         questions: [
           {
             question: "What engine is Node.js built upon?",
-            options: ["Firefox SpiderMonkey", "Safari WebKit", "Chrome V8", "Edge Chakra"],
-            answer: "Chrome V8"
+            options: [
+              "Firefox SpiderMonkey",
+              "Safari WebKit",
+              "Chrome V8",
+              "Edge Chakra",
+            ],
+            answer: "Chrome V8",
           },
           {
             question: "What is Express.js?",
-            options: ["A database", "A frontend framework", "A Node.js web application framework", "A programming language"],
-            answer: "A Node.js web application framework"
+            options: [
+              "A database",
+              "A frontend framework",
+              "A Node.js web application framework",
+              "A programming language",
+            ],
+            answer: "A Node.js web application framework",
           },
           {
-            question: "Which method is used to start an Express server and listen for connections?",
+            question:
+              "Which method is used to start an Express server and listen for connections?",
             options: ["app.start()", "app.run()", "app.listen()", "app.init()"],
-            answer: "app.listen()"
+            answer: "app.listen()",
           },
           {
             question: "How do you handle a POST request in Express?",
             options: ["app.get()", "app.post()", "app.put()", "app.send()"],
-            answer: "app.post()"
+            answer: "app.post()",
           },
           {
             question: "What is 'express.json()' an example of?",
             options: ["Database", "Route", "Middleware", "Frontend Component"],
-            answer: "Middleware"
-          }
-        ]
+            answer: "Middleware",
+          },
+        ],
       };
     } else {
       // Default Fallback Course Content
@@ -226,31 +261,60 @@ Theory is not enough. Applying what you have learned to real-world scenarios bri
 Keep building projects and never stop learning. Consistent practice is the only way to retain what you've learned and stay updated with new trends.`,
         questions: [
           {
-            question: "What is key to mastering this subject according to the notes?",
-            options: ["Memorizing syntax", "Understanding fundamentals", "Skipping the basics", "Using shortcuts"],
-            answer: "Understanding fundamentals"
+            question:
+              "What is key to mastering this subject according to the notes?",
+            options: [
+              "Memorizing syntax",
+              "Understanding fundamentals",
+              "Skipping the basics",
+              "Using shortcuts",
+            ],
+            answer: "Understanding fundamentals",
           },
           {
-            question: "Why is knowing how things work 'under the hood' important?",
-            options: ["It makes you a better professional", "It slows you down", "It is required for exams", "It looks good on a resume"],
-            answer: "It makes you a better professional"
+            question:
+              "Why is knowing how things work 'under the hood' important?",
+            options: [
+              "It makes you a better professional",
+              "It slows you down",
+              "It is required for exams",
+              "It looks good on a resume",
+            ],
+            answer: "It makes you a better professional",
           },
           {
-            question: "What is the benefit of following industry best practices?",
-            options: ["Work becomes unreadable", "Outputs are scalable and error-free", "It increases bugs", "It wastes time"],
-            answer: "Outputs are scalable and error-free"
+            question:
+              "What is the benefit of following industry best practices?",
+            options: [
+              "Work becomes unreadable",
+              "Outputs are scalable and error-free",
+              "It increases bugs",
+              "It wastes time",
+            ],
+            answer: "Outputs are scalable and error-free",
           },
           {
-            question: "What bridges the gap between basic knowledge and actual implementation?",
-            options: ["Reading more books", "Real-world application", "Taking breaks", "Watching tutorials endlessly"],
-            answer: "Real-world application"
+            question:
+              "What bridges the gap between basic knowledge and actual implementation?",
+            options: [
+              "Reading more books",
+              "Real-world application",
+              "Taking breaks",
+              "Watching tutorials endlessly",
+            ],
+            answer: "Real-world application",
           },
           {
             question: "What is the only way to retain what you've learned?",
-            options: ["Consistent practice & building projects", "Stopping learning", "Memorizing text", "Copying others"],
-            answer: "Consistent practice & building projects"
-          }
-        ]
+            options: [
+              "Consistent practice & building projects",
+              "Stopping learning",
+              "Memorizing text",
+              "Copying others",
+            ],
+            answer: "Consistent practice & building projects",
+          },
+        ],
       };
     }
   };
@@ -264,7 +328,10 @@ Keep building projects and never stop learning. Consistent practice is the only 
   }, [loguser, navigate]);
 
   const handleAnswer = (qIndex, selectedOption, correctOption) => {
-    if (selectedOption === correctOption && !answeredQuestions.includes(qIndex)) {
+    if (
+      selectedOption === correctOption &&
+      !answeredQuestions.includes(qIndex)
+    ) {
       const newAnswered = [...answeredQuestions, qIndex];
       setAnsweredQuestions(newAnswered);
 
@@ -287,14 +354,19 @@ Keep building projects and never stop learning. Consistent practice is the only 
     }
     setLoading(true);
     try {
-      await axios.post("https://vk-learnhub-1.onrender.com/enrollments/complete", {
-        student_id: loguser.id,
-        course_id: id,
-        student_name: loguser.name,
-        student_email: loguser.email,
-        course_title: course.title
-      });
-      alert("🎉 Congratulations! Course completed and certificate sent to your email!");
+      await axios.post(
+        "https://vk-learnhub-1.onrender.com/enrollments/complete",
+        {
+          student_id: loguser.id,
+          course_id: id,
+          student_name: loguser.name,
+          student_email: loguser.email,
+          course_title: course.title,
+        },
+      );
+      alert(
+        "🎉 Congratulations! Course completed and certificate sent to your email!",
+      );
       navigate("/student-dashboard", { state: { tab: "enrolled" } });
     } catch (err) {
       alert("Something went wrong");
@@ -306,29 +378,40 @@ Keep building projects and never stop learning. Consistent practice is the only 
   return (
     <div className="cl-container">
       <div className="cl-wrapper">
-
         {/* Header & Progress */}
         <div className="cl-header">
           <div className="cl-header-top">
             <h1 className="cl-title">{course.title} - Notes</h1>
-            <button onClick={() => navigate("/student-dashboard")} className="cl-back-btn">
+            <button
+              onClick={() => navigate("/student-dashboard")}
+              className="cl-back-btn"
+            >
               <span>←</span> Back to Dashboard
             </button>
           </div>
 
           <div className="cl-progress-info">
             <span>Quiz Progress</span>
-            <span style={{ color: progress === 100 ? "#10b981" : "#A96FCB" }}>{progress}%</span>
+            <span style={{ color: progress === 100 ? "#10b981" : "#A96FCB" }}>
+              {progress}%
+            </span>
           </div>
           <div className="cl-progress-track">
-            <div className="cl-progress-fill" style={{ width: `${progress}%`, backgroundColor: progress === 100 ? "#10b981" : "#A96FCB" }}></div>
+            <div
+              className="cl-progress-fill"
+              style={{
+                width: `${progress}%`,
+                backgroundColor: progress === 100 ? "#10b981" : "#A96FCB",
+              }}
+            ></div>
           </div>
         </div>
 
         {/* Confetti Message */}
         {showConfetti && (
           <div className="cl-confetti">
-            🎊 Amazing Job! You have answered all questions. You can now get your certificate! 🎊
+            🎊 Amazing Job! You have answered all questions. You can now get
+            your certificate! 🎊
           </div>
         )}
 
@@ -336,32 +419,47 @@ Keep building projects and never stop learning. Consistent practice is the only 
           {/* Full Course Notes Section */}
           <div className="cl-notes-section">
             <h2 className="cl-section-title">Course Materials</h2>
-            <div className="cl-notes-text">
-              {courseNotes}
-            </div>
+            <div className="cl-notes-text">{courseNotes}</div>
           </div>
 
           {/* Quiz Section */}
           <div className="cl-quiz-container">
             <h2 className="cl-section-title">Knowledge Check</h2>
-            <p style={{ color: "#64748b", marginBottom: "24px", marginTop: "-10px", fontSize: "15px" }}>Answer 5 questions correctly to unlock your certificate.</p>
+            <p
+              style={{
+                color: "#64748b",
+                marginBottom: "24px",
+                marginTop: "-10px",
+                fontSize: "15px",
+              }}
+            >
+              Answer 5 questions correctly to unlock your certificate.
+            </p>
 
             {questions.map((q, i) => {
-              const isUnlocked = i === 0 || answeredQuestions.includes(i - 1) || isAlreadyCompleted;
+              const isUnlocked =
+                i === 0 ||
+                answeredQuestions.includes(i - 1) ||
+                isAlreadyCompleted;
               const isDone = answeredQuestions.includes(i);
 
               return (
-                <div key={i} className={`cl-question-card ${!isUnlocked ? 'locked' : ''} ${isDone ? 'completed' : ''}`}>
-                  <h3 className="cl-question-text">Q{i + 1}. {q.question}</h3>
+                <div
+                  key={i}
+                  className={`cl-question-card ${!isUnlocked ? "locked" : ""} ${isDone ? "completed" : ""}`}
+                >
+                  <h3 className="cl-question-text">
+                    Q{i + 1}. {q.question}
+                  </h3>
                   <div className="cl-options">
-                    {q.options.map(opt => {
+                    {q.options.map((opt) => {
                       const isCorrectAnswer = isDone && opt === q.answer;
                       return (
                         <button
                           key={opt}
                           disabled={isDone}
                           onClick={() => handleAnswer(i, opt, q.answer)}
-                          className={`cl-option-btn ${isCorrectAnswer ? 'correct' : ''}`}
+                          className={`cl-option-btn ${isCorrectAnswer ? "correct" : ""}`}
                         >
                           {opt}
                         </button>
@@ -379,13 +477,21 @@ Keep building projects and never stop learning. Consistent practice is the only 
           <button
             disabled={progress < 100 || loading}
             onClick={markCourseComplete}
-            className={`cl-submit-btn ${progress === 100 ? (isAlreadyCompleted ? 'already-done' : 'active') : 'disabled'}`}
+            className={`cl-submit-btn ${progress === 100 ? (isAlreadyCompleted ? "already-done" : "active") : "disabled"}`}
           >
-            {loading ? "Processing..." : isAlreadyCompleted ? "✓ Already Completed (Back to Dashboard)" : "🏆 Mark as Complete & Get Certificate"}
+            {loading
+              ? "Processing..."
+              : isAlreadyCompleted
+                ? "✓ Already Completed (Back to Dashboard)"
+                : "🏆 Mark as Complete & Get Certificate"}
           </button>
-          {progress < 100 && <p className="cl-action-hint">Read the notes and answer all quiz questions to unlock your certificate.</p>}
+          {progress < 100 && (
+            <p className="cl-action-hint">
+              Read the notes and answer all quiz questions to unlock your
+              certificate.
+            </p>
+          )}
         </div>
-
       </div>
     </div>
   );

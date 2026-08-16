@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Courselist.css";
 import "../index.css";
 
-const EMOJIS = ["📘","📗","📕","📙","🧪","🎨","🧠","💻","📐","🔬"];
+const EMOJIS = ["📘", "📗", "📕", "📙", "🧪", "🎨", "🧠", "💻", "📐", "🔬"];
 
 function Courselist() {
   const [courses, setCourses] = useState([]);
@@ -22,15 +22,24 @@ function Courselist() {
     }
   };
 
-  useEffect(() => { loadCourses(); }, []);
+  useEffect(() => {
+    loadCourses();
+  }, []);
 
   const handleEnroll = async (courseId) => {
-    if (!loguser) { alert("Please login first"); navigate("/login"); return; }
+    if (!loguser) {
+      alert("Please login first");
+      navigate("/login");
+      return;
+    }
     try {
-      const res = await axios.post("https://vk-learnhub-1.onrender.com/enrollments", {
-        student_id: loguser.id,
-        course_id: courseId
-      });
+      const res = await axios.post(
+        "https://vk-learnhub-1.onrender.com/enrollments",
+        {
+          student_id: loguser.id,
+          course_id: courseId,
+        },
+      );
       alert(res.data.message);
     } catch (err) {
       alert(err.response?.data?.message || "Enrollment failed");
@@ -42,9 +51,10 @@ function Courselist() {
     else navigate("/student-dashboard");
   };
 
-  const filtered = courses.filter(c =>
-    c.title.toLowerCase().includes(search.toLowerCase()) ||
-    (c.description || "").toLowerCase().includes(search.toLowerCase())
+  const filtered = courses.filter(
+    (c) =>
+      c.title.toLowerCase().includes(search.toLowerCase()) ||
+      (c.description || "").toLowerCase().includes(search.toLowerCase()),
   );
 
   return (
@@ -59,7 +69,7 @@ function Courselist() {
           className="cl-search"
           placeholder="🔍 Search courses…"
           value={search}
-          onChange={e => setSearch(e.target.value)}
+          onChange={(e) => setSearch(e.target.value)}
         />
         <button className="btn btn-outline" onClick={handleBack}>
           ← Back
@@ -83,11 +93,10 @@ function Courselist() {
               </div>
               <div className="cl-card-price">₹{c.price}</div>
               <div className="cl-card-actions">
-                
                 <Link
                   to={`/coursedetails/${c.id}`}
                   className="btn btn-outline btn-sm"
-                  style={{flex:1, textAlign:'center'}}
+                  style={{ flex: 1, textAlign: "center" }}
                 >
                   Course Details
                 </Link>

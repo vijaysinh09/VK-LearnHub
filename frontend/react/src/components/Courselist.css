@@ -2,11 +2,11 @@
   min-height: 100vh;
   background: #f5f3ff;
   padding: 32px;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
 }
 
 .cl-header {
-  text-align: center;          /* ✅ Title center मध्ये */
+  text-align: center; /* ✅ Title center मध्ये */
   margin-bottom: 20px;
 }
 
@@ -33,12 +33,14 @@
   font-size: 16px;
   font-family: inherit;
   outline: none;
-  width: 320px;                /* ✅ मोठं width */
-  transition: border-color .2s, box-shadow .2s;
+  width: 320px; /* ✅ मोठं width */
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 .cl-search:focus {
   border-color: #9333ea;
-  box-shadow: 0 0 0 3px rgba(147,51,234,.1);
+  box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.1);
 }
 
 .cl-grid {
@@ -51,30 +53,60 @@
   background: #fff;
   border-radius: 16px;
   padding: 24px;
-  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   border: 1.5px solid #f3e8ff;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 }
 .cl-card:hover {
   border-color: #c084fc;
-  box-shadow: 0 8px 24px rgba(147,51,234,.12);
+  box-shadow: 0 8px 24px rgba(147, 51, 234, 0.12);
   transform: translateY(-3px);
 }
 
-.cl-card-emoji { font-size: 32px; }
-.cl-card-title { font-size: 20px; font-weight: 700; color: #1f2937; }
+.cl-card-emoji {
+  font-size: 32px;
+}
+.cl-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+}
 
-.cl-card-meta { display:flex; gap:12px; font-size:15px; color:#005eff; }
-.cl-card-price { font-size:20px; font-weight:800; color:#7e22ce; }
-.cl-card-actions { display:flex; gap:8px; margin-top:4px; }
+.cl-card-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 15px;
+  color: #005eff;
+}
+.cl-card-price {
+  font-size: 20px;
+  font-weight: 800;
+  color: #7e22ce;
+}
+.cl-card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
 
-.cl-empty { text-align:center; padding:60px 16px; color:#9ca3af; }
-.cl-empty-icon { font-size:48px; margin-bottom:12px; }
+.cl-empty {
+  text-align: center;
+  padding: 60px 16px;
+  color: #9ca3af;
+}
+.cl-empty-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
 
 @media (max-width: 600px) {
-  .cl-page { padding: 16px; }
-  .cl-grid { grid-template-columns: 1fr; }
+  .cl-page {
+    padding: 16px;
+  }
+  .cl-grid {
+    grid-template-columns: 1fr;
+  }
 }

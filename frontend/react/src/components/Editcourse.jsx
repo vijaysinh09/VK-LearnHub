@@ -7,11 +7,17 @@ function Editcourse() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [course, setCourse] = useState({ title:"", description:"", duration:"", price:"" });
+  const [course, setCourse] = useState({
+    title: "",
+    description: "",
+    duration: "",
+    price: "",
+  });
 
   useEffect(() => {
-    axios.get(`https://vk-learnhub-1.onrender.com/courses/${id}`)
-      .then(r => setCourse(r.data))
+    axios
+      .get(`https://vk-learnhub-1.onrender.com/courses/${id}`)
+      .then((r) => setCourse(r.data))
       .catch(console.error);
   }, [id]);
 
@@ -21,7 +27,10 @@ function Editcourse() {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`https://vk-learnhub-1.onrender.com/courses/${id}`, course);
+      await axios.put(
+        `https://vk-learnhub-1.onrender.com/courses/${id}`,
+        course,
+      );
       alert("Course updated successfully");
       navigate("/instructor-dashboard");
     } catch (err) {
@@ -82,10 +91,18 @@ function Editcourse() {
           </div>
 
           <div className="form-actions">
-            <button type="submit" className="btn btn-primary btn-lg" style={{flex:1}}>
+            <button
+              type="submit"
+              className="btn btn-primary btn-lg"
+              style={{ flex: 1 }}
+            >
               Save Changes
             </button>
-            <Link to="/instructor-dashboard" className="btn btn-outline btn-lg" style={{flex:1, textAlign:'center'}}>
+            <Link
+              to="/instructor-dashboard"
+              className="btn btn-outline btn-lg"
+              style={{ flex: 1, textAlign: "center" }}
+            >
               Cancel
             </Link>
           </div>
@@ -96,4 +113,3 @@ function Editcourse() {
 }
 
 export default Editcourse;
-

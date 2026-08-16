@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   padding: 32px 16px;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
 }
 
 .cd-card {
@@ -15,13 +15,27 @@
   padding: 40px;
   max-width: 700px;
   width: 100%;
-  box-shadow: 0 8px 32px rgba(0,0,0,.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
-.cd-back { margin-bottom: 20px; }
-.cd-emoji { font-size: 48px; margin-bottom: 12px; }
-.cd-title { font-size: 26px; font-weight: 800; color: #1f2937; margin: 0 0 6px; }
-.cd-subtitle { font-size: 14px; color: #6b7280; margin-bottom: 28px; }
+.cd-back {
+  margin-bottom: 20px;
+}
+.cd-emoji {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+.cd-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #1f2937;
+  margin: 0 0 6px;
+}
+.cd-subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 28px;
+}
 
 .cd-info-grid {
   display: grid;
@@ -37,8 +51,19 @@
   padding: 16px;
 }
 
-.cd-info-label { font-size: 11px; font-weight: 700; color: #9ca3af; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
-.cd-info-value { font-size: 16px; font-weight: 600; color: #1f2937; }
+.cd-info-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+.cd-info-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
 
 .cd-price {
   font-size: 28px;
@@ -63,6 +88,10 @@
 }
 
 @media (max-width: 500px) {
-  .cd-info-grid { grid-template-columns: 1fr; }
-  .cd-card { padding: 24px 16px; }
+  .cd-info-grid {
+    grid-template-columns: 1fr;
+  }
+  .cd-card {
+    padding: 24px 16px;
+  }
 }

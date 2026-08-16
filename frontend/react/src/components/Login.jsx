@@ -17,7 +17,8 @@ function Login() {
     let newErrors = { ...errors };
     if (name === "email") {
       if (!value) newErrors.email = "Email is required";
-      else if (!/\S+@\S+\.\S+/.test(value)) newErrors.email = "Invalid email address";
+      else if (!/\S+@\S+\.\S+/.test(value))
+        newErrors.email = "Invalid email address";
       else delete newErrors.email;
     }
     if (name === "password") {
@@ -30,7 +31,8 @@ function Login() {
   const validate = () => {
     let newErrors = {};
     if (!user.email) newErrors.email = "Email is required";
-    else if (!/\S+@\S+\.\S+/.test(user.email)) newErrors.email = "Invalid email address";
+    else if (!/\S+@\S+\.\S+/.test(user.email))
+      newErrors.email = "Invalid email address";
     if (!user.password) newErrors.password = "Password is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -41,20 +43,18 @@ function Login() {
     if (!validate()) return;
     setLoading(true);
     try {
-      const res = await axios.post("https://vk-learnhub-1.onrender.com/login", user);
+      const res = await axios.post(
+        "https://vk-learnhub-1.onrender.com/login",
+        user,
+      );
       sessionStorage.setItem("users", JSON.stringify(res.data.user));
 
-    
       const role = res.data.user.role;
 
-      if (role === "student") 
-      {
+      if (role === "student") {
         navigate("/student-dashboard");
-      }
-
-    else 
-      {
-      alert("Please use Instructor Login for instructor access.");
+      } else {
+        alert("Please use Instructor Login for instructor access.");
       }
     } catch (err) {
       alert(err.response?.data?.message || "Login failed. Please try again.");
@@ -72,7 +72,9 @@ function Login() {
         </div>
 
         <h2 className="auth-title">Welcome back</h2>
-        <p className="auth-subtitle">Sign in to access your student dashboard.</p>
+        <p className="auth-subtitle">
+          Sign in to access your student dashboard.
+        </p>
 
         <form onSubmit={submitHandler} className="auth-form">
           <div className="auth-field">
@@ -86,7 +88,9 @@ function Login() {
               className="auth-input"
               autoComplete="email"
             />
-            {errors.email && <span className="auth-error">⚠ {errors.email}</span>}
+            {errors.email && (
+              <span className="auth-error">⚠ {errors.email}</span>
+            )}
           </div>
 
           <div className="auth-field">
@@ -100,7 +104,9 @@ function Login() {
               className="auth-input"
               autoComplete="current-password"
             />
-            {errors.password && <span className="auth-error">⚠ {errors.password}</span>}
+            {errors.password && (
+              <span className="auth-error">⚠ {errors.password}</span>
+            )}
           </div>
 
           <button type="submit" className="auth-btn" disabled={loading}>
@@ -113,9 +119,9 @@ function Login() {
         </p>
 
         <div style={{ textAlign: "center", marginTop: "1rem" }}>
-           <p className="auth-footer">
-          <Link to="/">← Back to Home</Link>
-        </p>
+          <p className="auth-footer">
+            <Link to="/">← Back to Home</Link>
+          </p>
         </div>
       </div>
     </div>
@@ -123,4 +129,3 @@ function Login() {
 }
 
 export default Login;
-

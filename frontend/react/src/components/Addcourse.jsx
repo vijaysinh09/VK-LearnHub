@@ -8,7 +8,12 @@ function Addcourse() {
   const navigate = useNavigate();
   const loguser = JSON.parse(sessionStorage.getItem("users"));
 
-  const [course, setCourse] = useState({ title:"", description:"", duration:"", price:"" });
+  const [course, setCourse] = useState({
+    title: "",
+    description: "",
+    duration: "",
+    price: "",
+  });
   const [errors, setErrors] = useState({});
 
   const changeHandler = (e) => {
@@ -30,10 +35,13 @@ function Addcourse() {
     e.preventDefault();
     if (!validate()) return;
     try {
-      const res = await axios.post("https://vk-learnhub-1.onrender.com/courses", {
-        ...course,
-        instructor_id: loguser?.id
-      });
+      const res = await axios.post(
+        "https://vk-learnhub-1.onrender.com/courses",
+        {
+          ...course,
+          instructor_id: loguser?.id,
+        },
+      );
       alert(res.data.message);
       navigate("/instructor-dashboard");
     } catch (err) {
@@ -45,7 +53,9 @@ function Addcourse() {
     <div className="form-page">
       <div className="form-card">
         <h1 className="form-title">➕ Add New Course</h1>
-        <p className="form-subtitle">Fill in the details to publish a new course.</p>
+        <p className="form-subtitle">
+          Fill in the details to publish a new course.
+        </p>
 
         <form onSubmit={submitHandler}>
           <div className="form-field">
@@ -69,7 +79,9 @@ function Addcourse() {
               onChange={changeHandler}
               placeholder="Brief description of the course"
             />
-            {errors.description && <p className="form-error">⚠ {errors.description}</p>}
+            {errors.description && (
+              <p className="form-error">⚠ {errors.description}</p>
+            )}
           </div>
 
           <div className="form-field">
@@ -81,7 +93,9 @@ function Addcourse() {
               onChange={changeHandler}
               placeholder="e.g. 8 weeks"
             />
-            {errors.duration && <p className="form-error">⚠ {errors.duration}</p>}
+            {errors.duration && (
+              <p className="form-error">⚠ {errors.duration}</p>
+            )}
           </div>
 
           <div className="form-field">
@@ -99,10 +113,18 @@ function Addcourse() {
           </div>
 
           <div className="form-actions">
-            <button type="submit" className="btn btn-primary btn-lg" style={{flex:1}}>
+            <button
+              type="submit"
+              className="btn btn-primary btn-lg"
+              style={{ flex: 1 }}
+            >
               Add Course
             </button>
-            <Link to="/instructor-dashboard" className="btn btn-outline btn-lg" style={{flex:1, textAlign:'center'}}>
+            <Link
+              to="/instructor-dashboard"
+              className="btn btn-outline btn-lg"
+              style={{ flex: 1, textAlign: "center" }}
+            >
               Cancel
             </Link>
           </div>
@@ -113,4 +135,3 @@ function Addcourse() {
 }
 
 export default Addcourse;
-

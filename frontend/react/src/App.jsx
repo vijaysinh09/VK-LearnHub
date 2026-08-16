@@ -1,19 +1,19 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Home from './components/Home';
-import AboutUs from './components/AboutUs';
-import Features from './components/Features';
-import Guide from './components/Guide';
-import Register from './components/Register';
-import Login from './components/Login';
-import InstructorLogin from './components/InstructorLogin';
-import Courselist from './components/Courselist';
-import Coursedetails from './components/Coursedetails';
-import Addcourse from './components/Addcourse';
-import Editcourse from './components/Editcourse';
-import StudentDashboard from './components/studentdashboard';
-import InstructorDashboard from './components/InstructorDashboard';
-import CourseLearning from './components/CourseLearning';
-import './index.css';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Home from "./components/Home";
+import AboutUs from "./components/AboutUs";
+import Features from "./components/Features";
+import Guide from "./components/Guide";
+import Register from "./components/Register";
+import Login from "./components/Login";
+import InstructorLogin from "./components/InstructorLogin";
+import Courselist from "./components/Courselist";
+import Coursedetails from "./components/Coursedetails";
+import Addcourse from "./components/Addcourse";
+import Editcourse from "./components/Editcourse";
+import StudentDashboard from "./components/studentdashboard";
+import InstructorDashboard from "./components/InstructorDashboard";
+import CourseLearning from "./components/CourseLearning";
+import "./index.css";
 
 function App() {
   return (
@@ -40,13 +40,13 @@ function App() {
         <Route path="/editcourse/:id" element={<Editcourse />} />
 
         {/* Legacy redirect */}
-        <Route path="/studentdashboard" element={<Navigate to="/student-dashboard" replace />} />
-
-
+        <Route
+          path="/studentdashboard"
+          element={<Navigate to="/student-dashboard" replace />}
+        />
       </Routes>
     </BrowserRouter>
   );
 }
 
 export default App;
-

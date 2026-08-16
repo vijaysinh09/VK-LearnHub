@@ -78,7 +78,9 @@
   color: #111827;
   background: #fff;
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .contact-input:focus {
@@ -102,7 +104,9 @@
   padding: 11px 28px;
   border-radius: 8px;
   cursor: pointer;
-  transition: opacity 0.2s, transform 0.2s;
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
   box-shadow: 0 4px 14px rgba(147, 51, 234, 0.25);
 }
 

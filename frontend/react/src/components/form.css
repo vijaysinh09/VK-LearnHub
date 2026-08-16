@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   padding: 32px 16px;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
 }
 
 .form-card {
@@ -15,7 +15,7 @@
   padding: 40px;
   max-width: 560px;
   width: 100%;
-  box-shadow: 0 8px 32px rgba(0,0,0,.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .form-title {
@@ -40,7 +40,8 @@
   color: #374151;
   margin-bottom: 6px;
 }
-.form-input, .form-textarea {
+.form-input,
+.form-textarea {
   width: 100%;
   padding: 12px 14px;
   border: 1.5px solid #e5e7eb;
@@ -50,15 +51,25 @@
   background: #fafafa;
   font-family: inherit;
   outline: none;
-  transition: border-color .2s, box-shadow .2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
-.form-input:focus, .form-textarea:focus {
+.form-input:focus,
+.form-textarea:focus {
   border-color: #9333ea;
   background: #fff;
-  box-shadow: 0 0 0 3px rgba(147,51,234,.1);
+  box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.1);
 }
-.form-textarea { resize: vertical; min-height: 100px; }
-.form-error { color: #dc2626; font-size: 12px; margin-top: 4px; }
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.form-error {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 4px;
+}
 
 .form-actions {
   display: flex;

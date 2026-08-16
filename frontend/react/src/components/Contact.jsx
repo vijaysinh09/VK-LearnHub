@@ -1,16 +1,21 @@
-import { useState } from 'react';
-import Navbar from './Navbar';
-import './Page.css';
-import './Contact.css';
+import { useState } from "react";
+import Navbar from "./Navbar";
+import "./Page.css";
+import "./Contact.css";
 
 function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
-    setForm({ name: '', email: '', subject: '', message: '' });
+    setForm({ name: "", email: "", subject: "", message: "" });
     setTimeout(() => setSubmitted(false), 5000);
   };
 
@@ -39,7 +44,9 @@ function Contact() {
               <span className="contact-detail-icon">📧</span>
               <div>
                 <div className="contact-detail-label">Email</div>
-                <div className="contact-detail-value">kamblevijaysinh09@gmail.com</div>
+                <div className="contact-detail-value">
+                  kamblevijaysinh09@gmail.com
+                </div>
               </div>
             </div>
             <div className="contact-detail-item">
@@ -53,7 +60,9 @@ function Contact() {
               <span className="contact-detail-icon">🕐</span>
               <div>
                 <div className="contact-detail-label">Support Hours</div>
-                <div className="contact-detail-value">Monday – Friday, 9 AM – 6 PM IST</div>
+                <div className="contact-detail-value">
+                  Monday – Friday, 9 AM – 6 PM IST
+                </div>
               </div>
             </div>
           </div>
@@ -68,53 +77,61 @@ function Contact() {
 
             <div className="contact-row">
               <div className="contact-field">
-                <label className="contact-label" htmlFor="c-name">Full Name</label>
+                <label className="contact-label" htmlFor="c-name">
+                  Full Name
+                </label>
                 <input
                   id="c-name"
                   className="contact-input"
                   type="text"
                   placeholder="Your full name"
                   value={form.name}
-                  onChange={set('name')}
+                  onChange={set("name")}
                   required
                 />
               </div>
               <div className="contact-field">
-                <label className="contact-label" htmlFor="c-email">Email Address</label>
+                <label className="contact-label" htmlFor="c-email">
+                  Email Address
+                </label>
                 <input
                   id="c-email"
                   className="contact-input"
                   type="email"
                   placeholder="you@example.com"
                   value={form.email}
-                  onChange={set('email')}
+                  onChange={set("email")}
                   required
                 />
               </div>
             </div>
 
             <div className="contact-field">
-              <label className="contact-label" htmlFor="c-subject">Subject</label>
+              <label className="contact-label" htmlFor="c-subject">
+                Subject
+              </label>
               <input
                 id="c-subject"
                 className="contact-input"
                 type="text"
                 placeholder="What is this about?"
                 value={form.subject}
-                onChange={set('subject')}
+                onChange={set("subject")}
                 required
               />
             </div>
 
             <div className="contact-field">
-              <label className="contact-label" htmlFor="c-message">Message</label>
+              <label className="contact-label" htmlFor="c-message">
+                Message
+              </label>
               <textarea
                 id="c-message"
                 className="contact-input contact-textarea"
                 placeholder="Write your message here…"
                 rows={5}
                 value={form.message}
-                onChange={set('message')}
+                onChange={set("message")}
                 required
               />
             </div>
