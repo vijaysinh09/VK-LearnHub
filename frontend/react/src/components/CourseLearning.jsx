@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import "./CourseLearning.css";
 
 function CourseLearning() {
   const { id } = useParams();
@@ -303,107 +304,86 @@ Keep building projects and never stop learning. Consistent practice is the only 
   };
 
   return (
-    <div style={{ minHeight: "100vh", backgroundColor: "#f9fafb", padding: "40px 20px", fontFamily: "sans-serif" }}>
-      <div style={{ maxWidth: "800px", margin: "0 auto", backgroundColor: "#fff", padding: "30px", borderRadius: "12px", boxShadow: "0 4px 6px rgba(0,0,0,0.05)" }}>
+    <div className="cl-container">
+      <div className="cl-wrapper">
         
         {/* Header & Progress */}
-        <div style={{ position: "sticky", top: 0, backgroundColor: "#fff", padding: "10px 0", zIndex: 10, borderBottom: "1px solid #e5e7eb", marginBottom: "30px" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px" }}>
-            <h1 style={{ fontSize: "24px", color: "#111827", margin: 0 }}>{course.title} - Notes</h1>
-            <button onClick={() => navigate("/student-dashboard")} style={{ padding: "8px 16px", borderRadius: "6px", border: "1px solid #d1d5db", backgroundColor: "#fff", cursor: "pointer" }}>Back to Dashboard</button>
+        <div className="cl-header">
+          <div className="cl-header-top">
+            <h1 className="cl-title">{course.title} - Notes</h1>
+            <button onClick={() => navigate("/student-dashboard")} className="cl-back-btn">
+              <span>←</span> Back to Dashboard
+            </button>
           </div>
           
-          <div style={{ display: "flex", justifyContent: "space-between", fontSize: "14px", fontWeight: "bold", color: "#6b7280", marginBottom: "8px" }}>
+          <div className="cl-progress-info">
             <span>Quiz Progress</span>
-            <span style={{ color: progress === 100 ? "#10b981" : "#7e22ce" }}>{progress}%</span>
+            <span style={{ color: progress === 100 ? "#10b981" : "#A96FCB" }}>{progress}%</span>
           </div>
-          <div style={{ width: "100%", height: "12px", backgroundColor: "#f3f4f6", borderRadius: "10px", overflow: "hidden" }}>
-            <div style={{ width: `${progress}%`, height: "100%", backgroundColor: progress === 100 ? "#10b981" : "#7e22ce", transition: "width 0.5s ease-in-out" }}></div>
+          <div className="cl-progress-track">
+            <div className="cl-progress-fill" style={{ width: `${progress}%`, backgroundColor: progress === 100 ? "#10b981" : "#A96FCB" }}></div>
           </div>
         </div>
 
         {/* Confetti Message */}
         {showConfetti && (
-          <div style={{ padding: "15px", backgroundColor: "#dcfce7", color: "#166534", borderRadius: "8px", textAlign: "center", marginBottom: "20px", fontWeight: "bold", fontSize: "18px" }}>
+          <div className="cl-confetti">
             🎊 Amazing Job! You have answered all questions. You can now get your certificate! 🎊
           </div>
         )}
 
-        {/* Full Course Notes Section */}
-        <div style={{ marginBottom: "40px", padding: "20px", borderRadius: "8px", border: "1px solid #e5e7eb", backgroundColor: "#fdfcff" }}>
-          <h2 style={{ fontSize: "20px", color: "#374151", marginTop: 0, borderBottom: "2px solid #e5e7eb", paddingBottom: "10px" }}>Course Materials</h2>
-          <div style={{ color: "#4b5563", lineHeight: "1.8", fontSize: "16px", whiteSpace: "pre-wrap", marginTop: "15px" }}>
-            {courseNotes}
+        <div className="cl-content">
+          {/* Full Course Notes Section */}
+          <div className="cl-notes-section">
+            <h2 className="cl-section-title">Course Materials</h2>
+            <div className="cl-notes-text">
+              {courseNotes}
+            </div>
+          </div>
+
+          {/* Quiz Section */}
+          <div className="cl-quiz-container">
+            <h2 className="cl-section-title">Knowledge Check</h2>
+            <p style={{ color: "#64748b", marginBottom: "24px", marginTop: "-10px", fontSize: "15px" }}>Answer 5 questions correctly to unlock your certificate.</p>
+            
+            {questions.map((q, i) => {
+              const isUnlocked = i === 0 || answeredQuestions.includes(i - 1) || isAlreadyCompleted;
+              const isDone = answeredQuestions.includes(i);
+
+              return (
+                <div key={i} className={`cl-question-card ${!isUnlocked ? 'locked' : ''} ${isDone ? 'completed' : ''}`}>
+                  <h3 className="cl-question-text">Q{i+1}. {q.question}</h3>
+                  <div className="cl-options">
+                    {q.options.map(opt => {
+                      const isCorrectAnswer = isDone && opt === q.answer;
+                      return (
+                        <button
+                          key={opt}
+                          disabled={isDone}
+                          onClick={() => handleAnswer(i, opt, q.answer)}
+                          className={`cl-option-btn ${isCorrectAnswer ? 'correct' : ''}`}
+                        >
+                          {opt}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
-        {/* Quiz Section */}
-        <div style={{ marginTop: "40px" }}>
-          <h2 style={{ fontSize: "20px", color: "#374151", marginBottom: "20px" }}>Quiz (Answer 5 questions to unlock Certificate)</h2>
-          
-          {questions.map((q, i) => {
-            const isUnlocked = i === 0 || answeredQuestions.includes(i - 1) || isAlreadyCompleted;
-            const isDone = answeredQuestions.includes(i);
-
-            return (
-              <div key={i} style={{ 
-                marginBottom: "25px", 
-                padding: "20px", 
-                borderRadius: "8px", 
-                border: "1px solid #e5e7eb",
-                opacity: isUnlocked ? 1 : 0.5,
-                pointerEvents: isUnlocked ? "auto" : "none",
-                backgroundColor: isDone ? "#f0fdf4" : "#fff"
-              }}>
-                <strong style={{ display: "block", marginBottom: "15px", color: "#111827", fontSize: "16px" }}>Q{i+1}: {q.question}</strong>
-                <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                  {q.options.map(opt => (
-                    <button
-                      key={opt}
-                      disabled={isDone}
-                      onClick={() => handleAnswer(i, opt, q.answer)}
-                      style={{
-                        padding: "12px 15px",
-                        textAlign: "left",
-                        borderRadius: "6px",
-                        border: "1px solid #d1d5db",
-                        backgroundColor: isDone && opt === q.answer ? "#bbf7d0" : "#fff",
-                        color: isDone && opt === q.answer ? "#166534" : "#374151",
-                        cursor: isDone ? "default" : "pointer",
-                        fontWeight: isDone && opt === q.answer ? "bold" : "normal",
-                        transition: "background 0.2s"
-                      }}
-                    >
-                      {opt}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Final Submit Button */}
-        <div style={{ textAlign: "center", marginTop: "40px", paddingTop: "20px", borderTop: "1px solid #e5e7eb" }}>
+        // Final Submit Button
+        <div className="cl-action-area">
           <button 
             disabled={progress < 100 || loading}
             onClick={markCourseComplete}
-            style={{
-              padding: "16px 32px",
-              fontSize: "18px",
-              fontWeight: "bold",
-              color: "#fff",
-              backgroundColor: progress === 100 ? (isAlreadyCompleted ? "#4b5563" : "#10b981") : "#9ca3af",
-              border: "none",
-              borderRadius: "8px",
-              cursor: progress === 100 ? "pointer" : "not-allowed",
-              boxShadow: progress === 100 ? "0 4px 6px rgba(16, 185, 129, 0.3)" : "none",
-              transition: "all 0.3s"
-            }}
+            className={`cl-submit-btn ${progress === 100 ? (isAlreadyCompleted ? 'already-done' : 'active') : 'disabled'}`}
           >
-            {loading ? "Processing..." : isAlreadyCompleted ? "Already Completed (Back to Dashboard)" : "🏆 Mark as Complete & Get Certificate"}
+            {loading ? "Processing..." : isAlreadyCompleted ? "✓ Already Completed (Back to Dashboard)" : "🏆 Mark as Complete & Get Certificate"}
           </button>
-          {progress < 100 && <p style={{ color: "#6b7280", marginTop: "10px", fontSize: "14px" }}>Read the notes and answer all quiz questions to unlock your certificate.</p>}
+          {progress < 100 && <p className="cl-action-hint">Read the notes and answer all quiz questions to unlock your certificate.</p>}
         </div>
 
       </div>
