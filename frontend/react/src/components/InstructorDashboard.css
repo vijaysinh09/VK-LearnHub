@@ -197,9 +197,6 @@
 
 /* Responsive */
 @media (max-width: 900px) {
-  .ad-sidebar { width: 220px; }
-}
-@media (max-width: 700px) {
   .ad-layout { flex-direction: column; }
   .ad-sidebar { 
     width: 100%; height: auto; min-height: auto; position: sticky; top: 0; z-index: 100;
@@ -225,8 +222,7 @@
   .ad-page-header { flex-direction: column; align-items: flex-start; gap: 16px; }
   .ad-actions { width: 100%; justify-content: space-between; }
 }
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .ad-stats { grid-template-columns: 1fr; }
   .ad-modal { padding: 24px 20px; }
 }
-
