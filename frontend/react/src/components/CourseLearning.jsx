@@ -7,7 +7,7 @@ function CourseLearning() {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-  
+
   const course = location.state?.course || { title: "Loading Course...", courseId: id };
   const loguser = JSON.parse(sessionStorage.getItem("users"));
 
@@ -15,13 +15,13 @@ function CourseLearning() {
   const isAlreadyCompleted = course.status === "completed";
 
   const [progress, setProgress] = useState(isAlreadyCompleted ? 100 : 0);
-  const [answeredQuestions, setAnsweredQuestions] = useState(isAlreadyCompleted ? [0,1,2,3,4] : []);
+  const [answeredQuestions, setAnsweredQuestions] = useState(isAlreadyCompleted ? [0, 1, 2, 3, 4] : []);
   const [showConfetti, setShowConfetti] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const getCourseContent = (title) => {
     const lowerTitle = title.toLowerCase();
-    
+
     if (lowerTitle.includes("mysql") || lowerTitle.includes("sql")) {
       return {
         notes: `Welcome to the complete notes for ${title}.
@@ -267,7 +267,7 @@ Keep building projects and never stop learning. Consistent practice is the only 
     if (selectedOption === correctOption && !answeredQuestions.includes(qIndex)) {
       const newAnswered = [...answeredQuestions, qIndex];
       setAnsweredQuestions(newAnswered);
-      
+
       const newProgress = (newAnswered.length / questions.length) * 100;
       setProgress(newProgress);
 
@@ -306,7 +306,7 @@ Keep building projects and never stop learning. Consistent practice is the only 
   return (
     <div className="cl-container">
       <div className="cl-wrapper">
-        
+
         {/* Header & Progress */}
         <div className="cl-header">
           <div className="cl-header-top">
@@ -315,7 +315,7 @@ Keep building projects and never stop learning. Consistent practice is the only 
               <span>←</span> Back to Dashboard
             </button>
           </div>
-          
+
           <div className="cl-progress-info">
             <span>Quiz Progress</span>
             <span style={{ color: progress === 100 ? "#10b981" : "#A96FCB" }}>{progress}%</span>
@@ -345,14 +345,14 @@ Keep building projects and never stop learning. Consistent practice is the only 
           <div className="cl-quiz-container">
             <h2 className="cl-section-title">Knowledge Check</h2>
             <p style={{ color: "#64748b", marginBottom: "24px", marginTop: "-10px", fontSize: "15px" }}>Answer 5 questions correctly to unlock your certificate.</p>
-            
+
             {questions.map((q, i) => {
               const isUnlocked = i === 0 || answeredQuestions.includes(i - 1) || isAlreadyCompleted;
               const isDone = answeredQuestions.includes(i);
 
               return (
                 <div key={i} className={`cl-question-card ${!isUnlocked ? 'locked' : ''} ${isDone ? 'completed' : ''}`}>
-                  <h3 className="cl-question-text">Q{i+1}. {q.question}</h3>
+                  <h3 className="cl-question-text">Q{i + 1}. {q.question}</h3>
                   <div className="cl-options">
                     {q.options.map(opt => {
                       const isCorrectAnswer = isDone && opt === q.answer;
@@ -374,9 +374,9 @@ Keep building projects and never stop learning. Consistent practice is the only 
           </div>
         </div>
 
-        // Final Submit Button
+        {/* Final Submit Button */}
         <div className="cl-action-area">
-          <button 
+          <button
             disabled={progress < 100 || loading}
             onClick={markCourseComplete}
             className={`cl-submit-btn ${progress === 100 ? (isAlreadyCompleted ? 'already-done' : 'active') : 'disabled'}`}
