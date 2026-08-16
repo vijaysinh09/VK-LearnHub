@@ -186,52 +186,26 @@ app.post("/register",async(req,res)=>
         const isql="insert into users(name,email,password,role)values(?,?,?,?)";
         await db.query(isql,[name,email,hashpass,"student"]);
 
-        try
-        {
-            await transporter.sendMail
-            ({
-                from:`"VK LearnHub" <b59b32001@smtp-brevo.com>`,
-
-                to:email,
-
-                subject:"Registration Successful – VK LearnHub",
-
-                html:
-                `
-                <div style="font-family:sans-serif;max-width:520px;margin:auto;background:#f5f0ff;padding:32px;border-radius:16px;">
-
-                  <h2 style="color:#7c3aed;">Welcome, ${name}! 🎉</h2>
-
-                  <p style="color:#374151;">You have successfully registered on the <strong>VK LearnHub</strong>.</p>
-
-                  <table style="margin-top:16px;background:#fff;border-radius:8px;padding:16px;width:100%;">
-
-                    <tr>
-                    <td style="color:#6b7280;">Name</td><td><strong>${name}</strong></td>
-                    </tr>
-
-                    <tr>
-                    <td style="color:#6b7280;">Email</td><td><strong>${email}</strong></td>
-                    </tr>
-
-                    <tr>
-                    <td style="color:#6b7280;">Role</td><td><strong>Student</strong></td>
-                    </tr>
-
-                  </table>
-
-                  <p style="margin-top:24px;color:#6b7280;font-size:13px;">Start exploring courses and enroll today!</p>
-                </div>
-
-                `
-            });
-            console.log("registration email sent successfully");
-        }
-
-        catch(err)
-        { console.log("failed to send email",err.message); 
-
-        }
+        // Run email sending in the background without await to avoid SMTP timeouts blocking the response
+        transporter.sendMail({
+            from: `"VK LearnHub" <b59b32001@smtp-brevo.com>`,
+            to: email,
+            subject: "Registration Successful – VK LearnHub",
+            html: `
+            <div style="font-family:sans-serif;max-width:520px;margin:auto;background:#f5f0ff;padding:32px;border-radius:16px;">
+              <h2 style="color:#7c3aed;">Welcome, ${name}! 🎉</h2>
+              <p style="color:#374151;">You have successfully registered on the <strong>VK LearnHub</strong>.</p>
+              <table style="margin-top:16px;background:#fff;border-radius:8px;padding:16px;width:100%;">
+                <tr><td style="color:#6b7280;">Name</td><td><strong>${name}</strong></td></tr>
+                <tr><td style="color:#6b7280;">Email</td><td><strong>${email}</strong></td></tr>
+                <tr><td style="color:#6b7280;">Role</td><td><strong>Student</strong></td></tr>
+              </table>
+              <p style="margin-top:24px;color:#6b7280;font-size:13px;">Start exploring courses and enroll today!</p>
+            </div>
+            `
+        })
+        .then(() => console.log("registration email sent successfully"))
+        .catch(err => console.log("failed to send email", err.message));
 
         res.json({message:"registration successful"});
     }
@@ -647,26 +621,24 @@ app.post("/enrollments/complete", async (req, res) => {
         }
 
         // Send email
-        try {
-            await transporter.sendMail({
-                from: `"VK LearnHub" <b59b32001@smtp-brevo.com>`,
-                to: student_email,
-                subject: "Course Completion Certificate – VK LearnHub",
-                html: `
-                <div style="font-family:sans-serif;max-width:600px;margin:auto;background:#fdfdfd;padding:40px;border:10px solid #7e22ce;border-radius:8px;text-align:center;">
-                  <h1 style="color:#7c3aed;margin-bottom:10px;">CERTIFICATE OF COMPLETION</h1>
-                  <p style="color:#6b7280;font-size:16px;">This is to certify that</p>
-                  <h2 style="color:#111827;font-size:28px;margin:20px 0;">${student_name}</h2>
-                  <p style="color:#6b7280;font-size:16px;">has successfully completed the course</p>
-                  <h3 style="color:#374151;font-size:22px;margin:20px 0;">${course_title}</h3>
-                  <p style="color:#6b7280;font-size:14px;margin-top:40px;">VK LearnHub Education Platform</p>
-                </div>
-                `
-            });
-            console.log("Certificate email sent successfully");
-        } catch (err) {
-            console.log("failed to send certificate email", err.message); 
-        }
+        // Run certificate email sending in the background without await
+        transporter.sendMail({
+            from: `"VK LearnHub" <b59b32001@smtp-brevo.com>`,
+            to: student_email,
+            subject: "Course Completion Certificate – VK LearnHub",
+            html: `
+            <div style="font-family:sans-serif;max-width:600px;margin:auto;background:#fdfdfd;padding:40px;border:10px solid #7e22ce;border-radius:8px;text-align:center;">
+              <h1 style="color:#7c3aed;margin-bottom:10px;">CERTIFICATE OF COMPLETION</h1>
+              <p style="color:#6b7280;font-size:16px;">This is to certify that</p>
+              <h2 style="color:#111827;font-size:28px;margin:20px 0;">${student_name}</h2>
+              <p style="color:#6b7280;font-size:16px;">has successfully completed the course</p>
+              <h3 style="color:#374151;font-size:22px;margin:20px 0;">${course_title}</h3>
+              <p style="color:#6b7280;font-size:14px;margin-top:40px;">VK LearnHub Education Platform</p>
+            </div>
+            `
+        })
+        .then(() => console.log("Certificate email sent successfully"))
+        .catch(err => console.log("failed to send certificate email", err.message));
 
         res.json({ message: "Course marked as completed!" });
     } catch (err) {
