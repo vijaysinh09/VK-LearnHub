@@ -201,7 +201,32 @@
 }
 @media (max-width: 700px) {
   .ad-layout { flex-direction: column; }
-  .ad-sidebar { width: 100%; height: auto; position: static; }
+  .ad-sidebar { 
+    width: 100%; height: auto; position: sticky; top: 0; z-index: 100;
+    padding: 12px 16px; flex-direction: row; align-items: center; 
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+  .ad-sidebar-brand { border: none; padding: 0; display: flex; align-items: center; gap: 8px; margin-right: 16px; }
+  .ad-brand-logo { margin: 0; width: 34px; height: 34px; font-size: 16px; border-radius: 8px; }
+  .ad-brand-title, .ad-brand-sub { display: none; }
+  .ad-user-strip { display: none; }
+  .ad-nav { 
+    flex-direction: row; flex-wrap: nowrap; overflow-x: auto; 
+    padding: 0; gap: 6px; align-items: center; margin: 0;
+    -ms-overflow-style: none; scrollbar-width: none;
+  }
+  .ad-nav::-webkit-scrollbar { display: none; }
+  .ad-nav-section { display: none; }
+  .ad-nav-link { padding: 8px 12px; white-space: nowrap; width: auto; font-size: 13px; border-radius: 8px; }
+  .ad-logout-btn { margin: 0 0 0 auto; padding: 8px 12px; white-space: nowrap; border-radius: 8px; font-size: 12px; }
+  
   .ad-main { padding: 16px; }
+  .ad-stats { grid-template-columns: 1fr 1fr; }
+  .ad-page-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .ad-actions { width: 100%; justify-content: space-between; }
+}
+@media (max-width: 500px) {
+  .ad-stats { grid-template-columns: 1fr; }
+  .ad-modal { padding: 24px 20px; }
 }
 

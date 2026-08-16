@@ -409,13 +409,34 @@
 @media (max-width: 900px) {
   .sd-grid { grid-template-columns: 1fr; }
   .sd-layout { flex-direction: column; }
-  .sd-sidebar { width: 100%; height: auto; position: static; }
-  .sd-nav { flex-direction: row; flex-wrap: wrap; }
+  .sd-sidebar { 
+    width: 100%; height: auto; position: sticky; top: 0; z-index: 100;
+    padding: 12px 16px; flex-direction: row; align-items: center; 
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  }
+  .sd-sidebar-brand { border: none; padding: 0; display: flex; align-items: center; gap: 8px; margin-right: 16px; }
+  .sd-brand-logo { margin: 0; width: 36px; height: 36px; font-size: 18px; }
+  .sd-brand-title, .sd-brand-sub { display: none; }
+  .sd-user-strip { display: none; }
+  .sd-nav { 
+    flex-direction: row; flex-wrap: nowrap; overflow-x: auto; 
+    padding: 0; gap: 6px; align-items: center; margin: 0;
+    /* Hide scrollbar for cleaner look */
+    -ms-overflow-style: none; scrollbar-width: none;
+  }
+  .sd-nav::-webkit-scrollbar { display: none; }
+  .sd-nav-section { display: none; }
+  .sd-nav-link { padding: 8px 12px; white-space: nowrap; width: auto; font-size: 12px; }
+  .sd-nav-link.active { border-left: none; border-bottom: 2px solid #A96FCB; padding-left: 12px; }
+  .sd-logout-btn { margin: 0 0 0 auto; padding: 8px 12px; white-space: nowrap; }
   .sd-main { padding: 20px; }
 }
 @media (max-width: 600px) {
   .sd-main { padding: 14px; }
   .sd-stats { grid-template-columns: 1fr 1fr; }
   .sd-course-grid { grid-template-columns: 1fr; }
-  .sd-chat-window { width: 290px; height: 370px; }
+  .sd-chat-window { width: calc(100vw - 40px); height: 400px; max-width: 340px; }
+  .sd-profile-card { flex-direction: column; text-align: center; gap: 12px; padding: 24px; }
+  .sd-grid { gap: 14px; }
+  .sd-widget { padding: 16px; }
 }
