@@ -216,7 +216,7 @@ function InstructorDashboard() {
             </div>
 
             {/* Quick tables */}
-            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:20}}>
+            <div className="ad-grid">
               {/* Recent Enrollments */}
               <div className="ad-widget">
                 <div className="ad-widget-header">
@@ -531,7 +531,7 @@ function InstructorDashboard() {
               </div>
             </div>
 
-            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:20}}>
+            <div className="ad-grid">
               <div className="ad-widget">
                 <div className="ad-widget-header">
                   <div className="ad-widget-title">📊 Enrollment Breakdown</div>
