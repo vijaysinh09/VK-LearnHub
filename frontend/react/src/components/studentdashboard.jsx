@@ -86,6 +86,12 @@ function StudentDashboard() {
   const [chatInput, setChatInput] = useState("");
   const [chatLoading, setChatLoading] = useState(false);
 
+  const [isEditingProfile, setIsEditingProfile] = useState(false);
+  const [editProfileData, setEditProfileData] = useState({ 
+    name: loguser?.name || "", 
+    email: loguser?.email || "" 
+  });
+
   const activeCount = myCourses.filter((c) => c.status === "active").length;
   const doneCount = myCourses.filter((c) => c.status === "completed").length;
   const totalSpent = myCourses.reduce((s, c) => s + Number(c.price || 0), 0);
@@ -171,6 +177,27 @@ function StudentDashboard() {
   const handleLogout = () => {
     sessionStorage.clear();
     navigate("/login");
+  };
+
+  const handleSaveProfile = async () => {
+    if (!editProfileData.name || !editProfileData.email) {
+      alert("Name and email are required!");
+      return;
+    }
+    try {
+      await axios.put(`https://vk-learnhub-1.onrender.com/instructor/users/${loguser.id}`, {
+        name: editProfileData.name,
+        email: editProfileData.email,
+        role: loguser.role
+      });
+      alert("Profile updated successfully!");
+      const updatedUser = { ...loguser, name: editProfileData.name, email: editProfileData.email };
+      sessionStorage.setItem("users", JSON.stringify(updatedUser));
+      setIsEditingProfile(false);
+      window.location.reload(); 
+    } catch (err) {
+      alert(err.response?.data?.message || "Failed to update profile");
+    }
   };
 
   const handleSendMessage = async (e, currentMode) => {
@@ -935,14 +962,42 @@ function StudentDashboard() {
               <div className="sd-widget">
                 <div className="sd-widget-header">
                   <div className="sd-widget-title">📋 Account Details</div>
+                  {!isEditingProfile ? (
+                    <button className="btn btn-outline btn-sm" onClick={() => setIsEditingProfile(true)}>
+                      Edit Profile
+                    </button>
+                  ) : (
+                    <div>
+                      <button className="btn btn-outline btn-sm" onClick={() => setIsEditingProfile(false)} style={{marginRight: '8px'}}>Cancel</button>
+                      <button className="btn btn-primary btn-sm" onClick={handleSaveProfile}>Save</button>
+                    </div>
+                  )}
                 </div>
                 <div className="sd-pay-row">
                   <span className="sd-pay-label">Full Name</span>
-                  <span className="sd-pay-value">{loguser.name}</span>
+                  {isEditingProfile ? (
+                    <input 
+                      type="text" 
+                      value={editProfileData.name} 
+                      onChange={(e) => setEditProfileData({...editProfileData, name: e.target.value})} 
+                      style={{padding: '4px 8px', borderRadius: '4px', border: '1px solid #d1d5db', outline: 'none', width: '200px'}}
+                    />
+                  ) : (
+                    <span className="sd-pay-value">{loguser.name}</span>
+                  )}
                 </div>
                 <div className="sd-pay-row">
                   <span className="sd-pay-label">Email</span>
-                  <span className="sd-pay-value">{loguser.email}</span>
+                  {isEditingProfile ? (
+                    <input 
+                      type="email" 
+                      value={editProfileData.email} 
+                      onChange={(e) => setEditProfileData({...editProfileData, email: e.target.value})} 
+                      style={{padding: '4px 8px', borderRadius: '4px', border: '1px solid #d1d5db', outline: 'none', width: '200px'}}
+                    />
+                  ) : (
+                    <span className="sd-pay-value">{loguser.email}</span>
+                  )}
                 </div>
                 <div className="sd-pay-row">
                   <span className="sd-pay-label">Role</span>

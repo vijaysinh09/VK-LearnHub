@@ -13,17 +13,7 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-app.use(
-  cors({
-    origin: [
-      "https://vk-learnhub.pages.dev",
-      "http://localhost:5173",
-      "http://localhost:5174",
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    credentials: true,
-  })
-);
+app.use(cors());
 
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || "",
@@ -89,47 +79,6 @@ app.get("/users", async (req, res) => {
   }
 });
 
-app.get("/users/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const sql = "select id,name,email,role from users where id=?";
-    const [result] = await db.query(sql, [id]);
-
-    if (result.length === 0) {
-      return res.status(404).json({
-        message: "user not found",
-      });
-    }
-
-    res.json(result[0]);
-  } catch (err) {
-    res.status(500).json({
-      message: err.message,
-    });
-  }
-});
-
-app.put("/users/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { name, email, password, role } = req.body;
-    const passhash = await bcrypt.hash(password, 10);
-    const sql = "update users set name=?,email=?,password=?,role=? where id=?";
-    const [result] = await db.query(sql, [name, email, passhash, role, id]);
-
-    if (result.affectedRows === 0) {
-      return res.status(404).json({
-        message: "user not found",
-      });
-    }
-
-    res.json({ message: "user updated successfully" });
-  } catch (err) {
-    res.status(500).json({
-      message: err.message,
-    });
-  }
-});
 
 app.delete("/users/:id", async (req, res) => {
   try {
